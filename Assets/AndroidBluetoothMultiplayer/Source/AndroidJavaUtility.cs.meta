@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d7202c5e64f20ac4e97579be8522c92f
+labels:
+- android
+- bluetooth
+- networking
+- multiplayer
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

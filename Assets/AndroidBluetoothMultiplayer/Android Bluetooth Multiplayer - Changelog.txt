@@ -1,0 +1,65 @@
+2.1.3.0
+- Improved Unity 2017.2 compatibility.
+- Minor fixes.
+
+2.1.2.0
+- Fixed default AndroidManifest.xml file not being found on macOS.
+
+2.1.1.0
+- Fixed hang when trying to stop the unfinished attempt to connect to the Bluetooth server.
+- Fixed not being able to connect to the server for the second time after server has disconnected.
+- Fixed crash on some devices after the Bluetooth server has disconnected.
+- Downgraded Android API target to API 23 for better Unity comaptibility.
+
+2.1.0.0
+- Official UNet support.
+- New UNet-based multiplayer demo.
+- Added an example of implementing custom device discovery UI.
+- Improved Android 6.0 support.
+- Rewritten manifest generator/patcher, much more reliable now.
+- Removed Vuforia 3.5 support. With Vuforia 5 there is no need for a special Activity anymore.
+- Dropped support for Unity 5.1 and older. Unity 5.2 or newer is now a requirement.
+- Code cleanup and refactor.
+- Minor fixes and improvements.
+
+2.0.0
+- Major code refactoring and standardization.
+- Added StartListening() method.
+- Improved demos code.
+- Added basic RPC file transfer demo.
+- Fixed incorrect handling of disconnected clients that sometimes lead to crashes.
+- Implemented comparison methods for BluetoothDevice.
+- Improved compatibility with Unity 5.
+
+1.3.3:
+- Improved Android 5 compatibility.
+
+1.3.2:
+- Added onBluetoothDiscoverabilityEnabled and onBluetoothDiscoverabilityEnableFailed events.
+
+1.3.1:
+- Fixed an issue when GetDiscoveredDevices() returned empty array before starting the discovery process.
+
+1.3:
+- New IsDiscoverable() method.
+- Added a parameter to ShowDeviceList() for showing only data-capable devices.
+- Added detection of the Bluetooth device class.
+- Improved integration with other Android plugins.
+- Improved demo scenes.
+- Code clean-up.
+
+1.2.3:
+- Fixed an issue when client wasn't disconnecting from server.
+
+1.2:
+- New GetCurrentDevice() method to get current Bluetooth device information.
+- BluetoothMultiplayerAndroidManager is now instantiated automatically, no need to add prefab.
+- New SetRawPackets() method to transmit data as raw (for advanced usage).
+
+1.1:
+- Add device discovery API (with demo usage example).
+- Fix manifest generation on Mac OS X.
+- Minor fixes.
+
+1.0:
+ - Initial release.
