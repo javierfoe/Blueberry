@@ -1,8 +1,6 @@
 using UnityEngine;
 using Mirror;
 
-#pragma warning disable 618
-
 namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
     /// <summary>
     /// A very simple object. Moves to the position of the touch with interpolation.
@@ -75,5 +73,3 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
         }
     }
 }
-
-#pragma warning restore 618

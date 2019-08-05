@@ -102,35 +102,30 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
 
         // Fired when server is started and waiting for incoming connections
         private void JavaListeningStartedHandler(string empty) {
-            Action handler = ListeningStarted;
-            if (handler != null) handler();
+            ListeningStarted?.Invoke();
         }
 
         // Fired when listening for incoming connections 
         // was stopped by StopListening()
         private void JavaListeningStoppedHandler(string empty) {
-            Action handler = ListeningStopped;
-            if (handler != null) handler();
+            ListeningStopped?.Invoke();
         }
 
         // Fired when Bluetooth was enabled
         private void JavaAdapterEnabledHandler(string empty) {
-            Action handler = AdapterEnabled;
-            if (handler != null) handler();
+            AdapterEnabled?.Invoke();
         }
 
         // Fired when request to enabled Bluetooth failed for some reason
         // (user did not authorized to enable Bluetooth or an error occured)
         private void JavaAdapterEnableFailedHandler(string empty) {
-            Action handler = AdapterEnableFailed;
-            if (handler != null) handler();
+            AdapterEnableFailed?.Invoke();
         }
 
         // Fired when request to enabled Bluetooth discoverability failed for some reason
         // (user dismissed the request dialog or an error occured)
         private void JavaDiscoverabilityEnableFailedHandler(string empty) {
-            Action handler = DiscoverabilityEnableFailed;
-            if (handler != null) handler();
+            DiscoverabilityEnableFailed?.Invoke();
         }
 
         // Fired when Bluetooth discoverability was enabled
@@ -140,77 +135,66 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
                 discoverabilityDuration = 0;
             }
 
-            Action<int> handler = DiscoverabilityEnabled;
-            if (handler != null) handler(discoverabilityDuration);
+            DiscoverabilityEnabled?.Invoke(discoverabilityDuration);
         }
 
         // Fired when Bluetooth was disabled
         private void JavaAdapterDisabledHandler(string empty) {
-            Action handler = AdapterDisabled;
-            if (handler != null) handler();
+            AdapterDisabled?.Invoke();
         }
 
         // Fired when Bluetooth client successfully connected to the Bluetooth server
         // Provides BluetoothDevice of server device
         private void JavaConnectedToServerHandler(string deviceAddress) {
-            Action<BluetoothDevice> handler = ConnectedToServer;
-            if (handler != null) handler(GetDeviceFromAddress(deviceAddress));
+            ConnectedToServer?.Invoke(GetDeviceFromAddress(deviceAddress));
         }
 
         // Fired when Bluetooth client failed to connect to the Bluetooth server
         // Provides BluetoothDevice of server device
         private void JavaConnectionToServerFailedHandler(string deviceAddress) {
-            Action<BluetoothDevice> handler = ConnectionToServerFailed;
-            if (handler != null) handler(GetDeviceFromAddress(deviceAddress));
+            ConnectionToServerFailed?.Invoke(GetDeviceFromAddress(deviceAddress));
         }
 
         // Fired when Bluetooth client disconnected from the Bluetooth server
         // Provides BluetoothDevice of server device disconnected from
         private void JavaDisconnectedFromServerHandler(string deviceAddress) {
-            Action<BluetoothDevice> handler = DisconnectedFromServer;
-            if (handler != null) handler(GetDeviceFromAddress(deviceAddress));
+            DisconnectedFromServer?.Invoke(GetDeviceFromAddress(deviceAddress));
         }
 
         // Fired on Bluetooth server when an incoming Bluetooth client connection
         // was accepted
         // Provides BluetoothDevice of connected client device
         private void JavaClientConnectedHandler(string deviceAddress) {
-            Action<BluetoothDevice> handler = ClientConnected;
-            if (handler != null) handler(GetDeviceFromAddress(deviceAddress));
+            ClientConnected?.Invoke(GetDeviceFromAddress(deviceAddress));
         }
 
         // Fired on Bluetooth server when a Bluetooth client had disconnected
         // Provides BluetoothDevice of disconnected client device
         private void JavaClientDisconnectedHandler(string deviceAddress) {
-            Action<BluetoothDevice> handler = ClientDisconnected;
-            if (handler != null) handler(GetDeviceFromAddress(deviceAddress));
+            ClientDisconnected?.Invoke(GetDeviceFromAddress(deviceAddress));
         }
 
         // Fired when user selects a device in the device picker dialog. 
         // Provides BluetoothDevice of picked device
         private void JavaDevicePickedHandler(string deviceAddress) {
-            Action<BluetoothDevice> handler = DevicePicked;
-            if (handler != null) handler(GetDeviceFromAddress(deviceAddress));
+            DevicePicked?.Invoke(GetDeviceFromAddress(deviceAddress));
         }
 
         // Fired when Bluetooth discovery is actually started
         // after call to BluetoothMultiplayerAndroid.StartListening()
         private void JavaDiscoveryStartedHandler(string empty) {
-            Action handler = DiscoveryStarted;
-            if (handler != null) handler();
+            DiscoveryStarted?.Invoke();
         }
 
         // Fired when Bluetooth discovery is finished
         private void JavaDiscoveryFinishedHandler(string empty) {
-            Action handler = DiscoveryFinished;
-            if (handler != null) handler();
+            DiscoveryFinished?.Invoke();
         }
 
         // Fired when a new device was found during
         // Bluetooth discovery procedure
         private void JavaDeviceDiscoveredHandler(string deviceAddress) {
-            Action<BluetoothDevice> handler = DeviceDiscovered;
-            if (handler != null) handler(GetDeviceFromAddress(deviceAddress));
+            DeviceDiscovered?.Invoke(GetDeviceFromAddress(deviceAddress));
         }
 
         #endregion Event handlers

@@ -1,7 +1,3 @@
-#if !(UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3)
-#define UNITY_NEW_SCENE_MANAGEMENT
-#endif
-
 using UnityEngine;
 
 namespace LostPolygon.AndroidBluetoothMultiplayer.Examples {
