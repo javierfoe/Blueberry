@@ -11,6 +11,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
         [SyncVar]
         public float PositionRandomOffset = 0f;
 
+        [SyncVar]
         private Vector3 _destination;
         private SpriteRenderer _spriteRenderer;
         private Rigidbody2D _rigidbody2D;
@@ -48,13 +49,11 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
             if (Input.GetMouseButtonDown(0)) {
                 _destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 _destination += (Vector3) (Random.insideUnitCircle * PositionRandomOffset);
+                CmdDestination(_destination);
             }
         }
 
         private void FixedUpdate() {
-            if (!hasAuthority)
-                return;
-
             _destination.z = 0f;
             _rigidbody2D.position = Vector3.MoveTowards(_rigidbody2D.position, _destination, Speed * Time.deltaTime);
         }
@@ -70,6 +69,12 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
         public override void OnStartClient() {
             OnTransformLocalScaleChangedHandler(TransformLocalScale);
             OnColorChangedHandler(_color);
+        }
+
+        [Command]
+        private void CmdDestination(Vector3 destination)
+        {
+            _destination = destination;
         }
     }
 }

@@ -49,7 +49,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet
 
 
                 // Set player authority
-                NetworkServer.SpawnWithClientAuthority(actorGameObject, conn);
+                NetworkServer.AddPlayerForConnection(conn, actorGameObject);
             }
         }
 
