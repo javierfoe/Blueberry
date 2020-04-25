@@ -7,7 +7,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
         public GameObject TapMarkerPrefab;
 
         public AndroidBluetoothNetworkManagerHelper AndroidBluetoothNetworkManagerHelper;
-        public BluetoothMultiplayerDemoNetworkManager BluetoothMultiplayerDemoNetworkManager;
+        public NetworkManagerDemo NetworkManagerDemo;
 
         public DeviceBrowserController CustomDeviceBrowser;
 
@@ -73,7 +73,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
             UseCustomDeviceBrowserUIToggle.gameObject.SetActive(togglesActive);
 
             // Update values
-            BluetoothMultiplayerDemoNetworkManager.StressTestMode = StressTestToggle.isOn;
+            NetworkManagerDemo.StressTestMode = StressTestToggle.isOn;
         }
 
         private void Awake() {
@@ -84,7 +84,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
         protected override void OnGoingBackToMenu() {
             // Gracefully closing all Bluetooth connectivity and loading the menu
             try {
-                BluetoothMultiplayerDemoNetworkManager.StopHost();
+                NetworkManagerDemo.StopHost();
                 AndroidBluetoothMultiplayer.StopDiscovery();
                 AndroidBluetoothMultiplayer.Stop();
             } catch {
@@ -110,7 +110,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
         public void OnDisconnectButton() {
             AndroidBluetoothMultiplayer.StopDiscovery();
             AndroidBluetoothMultiplayer.Stop();
-            BluetoothMultiplayerDemoNetworkManager.StopHost();
+            NetworkManagerDemo.StopHost();
         }
 
         #endregion

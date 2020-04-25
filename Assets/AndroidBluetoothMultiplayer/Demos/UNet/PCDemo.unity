@@ -131,8 +131,8 @@ GameObject:
   m_Component:
   - component: {fileID: 262133279}
   - component: {fileID: 262133278}
-  - component: {fileID: 262133277}
   - component: {fileID: 262133280}
+  - component: {fileID: 262133277}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 262133276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7424c1070fad4ba2a7a96b02fbeb4bb, type: 3}
+  m_Script: {fileID: 11500000, guid: ec862738267237f4d91e6454ff15f4ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnClientConnected:
@@ -176,10 +176,14 @@ MonoBehaviour:
   OnServerDisconnected:
     m_PersistentCalls:
       m_Calls: []
-  port: 7777
-  NoDelay: 1
-  serverMaxMessageSize: 16384
-  clientMaxMessageSize: 16384
+  DebugEnabled: 0
+  ServerBindAll: 1
+  ServerBindAddress: 127.0.0.1
+  CommunicationPort: 7777
+  MaximumPeerCCU: 4095
+  EnetPollTimeout: 1
+  MaxPacketSizeInKb: 64
+  Channels: 0100000002000000
 --- !u!114 &262133278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,15 +199,18 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   runInBackground: 1
   startOnHeadless: 1
-  serverTickRate: 30
   showDebugMessages: 0
+  serverTickRate: 30
   offlineScene: 
   onlineScene: 
   transport: {fileID: 262133277}
   networkAddress: localhost
   maxConnections: 4
+  disconnectInactiveConnections: 0
+  serverIdleTimeout: 60
+  authenticator: {fileID: 0}
   playerPrefab: {fileID: 100000, guid: 5014312347ddd42488d9e931ab339ee2, type: 3}
-  autoCreatePlayer: 1
+  autoCreatePlayer: 0
   playerSpawnMethod: 0
   spawnPrefabs: []
   TapMarkerPrefab: {fileID: 100000, guid: 35d7c816fe90dd14abe07e982f7c3705, type: 3}

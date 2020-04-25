@@ -149,7 +149,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
             }
 
             // Trying to connect to the device picked by user
-            AndroidBluetoothMultiplayer.Connect(device.Address, _transportLayer.port);
+            AndroidBluetoothMultiplayer.Connect(device.Address, (ushort)_transportLayer.CommunicationPort);
         }
 
         protected virtual void OnBluetoothClientDisconnected(BluetoothDevice device) {
@@ -219,7 +219,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
             switch (_desiredMode) {
                 case BluetoothMultiplayerMode.Server:
                     StopAll();
-                    AndroidBluetoothMultiplayer.StartServer(_transportLayer.port);
+                    AndroidBluetoothMultiplayer.StartServer((ushort)_transportLayer.CommunicationPort);
                     break;
                 case BluetoothMultiplayerMode.Client:
                     StopAll();
@@ -280,7 +280,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
             if (AndroidBluetoothMultiplayer.GetIsBluetoothEnabled()) {
                 AndroidBluetoothMultiplayer.RequestEnableDiscoverability(_bluetoothNetworkManagerSettings.DefaultBluetoothDiscoverabilityInterval);
                 StopAll(); // Just to be sure
-                AndroidBluetoothMultiplayer.StartServer(_transportLayer.port);
+                AndroidBluetoothMultiplayer.StartServer((ushort)_transportLayer.CommunicationPort);
             } else {
                 // Otherwise, we have to enable Bluetooth first and wait for callback
                 _desiredMode = BluetoothMultiplayerMode.Server;

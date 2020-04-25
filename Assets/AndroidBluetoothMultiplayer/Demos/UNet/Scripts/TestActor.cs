@@ -1,11 +1,13 @@
 using UnityEngine;
 using Mirror;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
+namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet
+{
     /// <summary>
     /// A very simple object. Moves to the position of the touch with interpolation.
     /// </summary>
-    public class TestActor : NetworkBehaviour {
+    public class TestActor : NetworkBehaviour
+    {
         public float Speed = 100f;
 
         [SyncVar]
@@ -32,7 +34,8 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
             Color.yellow
         };
 
-        private void Awake() {
+        private void Awake()
+        {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _destination = transform.position;
@@ -42,33 +45,49 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
             TransformLocalScale = transform.localScale;
         }
 
-        private void Update() {
+        private void Update()
+        {
             if (!hasAuthority)
                 return;
 
-            if (Input.GetMouseButtonDown(0)) {
+            if (Input.GetMouseButtonDown(0))
+            {
                 _destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                _destination += (Vector3) (Random.insideUnitCircle * PositionRandomOffset);
+                _destination += (Vector3)(Random.insideUnitCircle * PositionRandomOffset);
                 CmdDestination(_destination);
             }
         }
 
-        private void FixedUpdate() {
+        private void FixedUpdate()
+        {
             _destination.z = 0f;
             _rigidbody2D.position = Vector3.MoveTowards(_rigidbody2D.position, _destination, Speed * Time.deltaTime);
         }
 
-        private void OnTransformLocalScaleChangedHandler(Vector3 localScale) {
+        private void OnTransformLocalScaleChanged(Vector3 localScale)
+        {
             transform.localScale = localScale;
         }
 
-        private void OnColorChangedHandler(Color color) {
+        private void OnTransformLocalScaleChangedHandler(Vector3 oldLocalScale, Vector3 newLocalScale)
+        {
+            OnTransformLocalScaleChanged(newLocalScale);
+        }
+
+        private void OnColorChanged(Color color)
+        {
             _spriteRenderer.color = color;
         }
 
-        public override void OnStartClient() {
-            OnTransformLocalScaleChangedHandler(TransformLocalScale);
-            OnColorChangedHandler(_color);
+        private void OnColorChangedHandler(Color oldColor, Color newColor)
+        {
+            OnColorChanged(newColor);
+        }
+
+        public override void OnStartClient()
+        {
+            OnTransformLocalScaleChanged(TransformLocalScale);
+            OnColorChanged(_color);
         }
 
         [Command]

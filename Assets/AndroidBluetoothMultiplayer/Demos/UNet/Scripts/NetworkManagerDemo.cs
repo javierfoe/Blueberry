@@ -3,8 +3,9 @@ using Mirror;
 using Random = UnityEngine.Random;
 using System.Collections.Generic;
 using LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet;
+using LostPolygon.AndroidBluetoothMultiplayer;
 
-public class NetworkManagerPC : NetworkManager
+public class NetworkManagerDemo : NetworkManager
 {
     public GameObject TapMarkerPrefab; // Reference to the tap effect
     public bool StressTestMode;
@@ -25,31 +26,40 @@ public class NetworkManagerPC : NetworkManager
 
         NetworkClient.RegisterHandler<CreateTapMarkerMessage>(OnClientCreateTapMarkerHandler);
     }
-    
+
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+
+#if UNITY_ANDROID
+        // Stopping all Bluetooth connectivity on Unity networking disconnect event
+        AndroidBluetoothMultiplayer.Stop();
+#endif
+    }
+
     public override void OnServerReady(NetworkConnection conn)
     {
         base.OnServerReady(conn);
 
         // Spawn the controllable actors
         int actorCount = !StressTestMode ? 1 : kStressModeActors;
+        GameObject player = null;
         for (int i = 0; i < actorCount; i++)
         {
             Vector3 position = Random.insideUnitCircle * 15f;
-            GameObject actorGameObject = (GameObject)Instantiate(playerPrefab, position, Quaternion.identity);
-            TestActor testActor = actorGameObject.GetComponent<TestActor>();
+            player = (GameObject)Instantiate(playerPrefab, position, Quaternion.identity);
+            TestActor testActor = player.GetComponent<TestActor>();
 
             // Make them smaller and more random in stress test mode
             if (StressTestMode)
             {
                 testActor.PositionRandomOffset = 10f;
-                actorGameObject.transform.localScale *= 0.5f;
-                testActor.TransformLocalScale = actorGameObject.transform.localScale;
+                player.transform.localScale *= 0.5f;
+                testActor.TransformLocalScale = player.transform.localScale;
             }
-
-
-            // Set player authority
-            NetworkServer.AddPlayerForConnection(conn, actorGameObject);
+            NetworkServer.Spawn(player, conn);
         }
+        NetworkServer.AddPlayerForConnection(conn, player);
     }
 
     // Called when client receives a CreateTapMarkerMessage
@@ -66,7 +76,7 @@ public class NetworkManagerPC : NetworkManager
         // since that client already creates a local tap marker on his own
 
         NetworkConnection conn;
-        foreach (KeyValuePair<int, NetworkConnection> entry in NetworkServer.connections)
+        foreach (KeyValuePair<int, NetworkConnectionToClient> entry in NetworkServer.connections)
         {
             conn = entry.Value;
             if (conn == null || conn == connection)
