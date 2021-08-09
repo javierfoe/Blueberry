@@ -1,4 +1,5 @@
 ﻿using System;
+using kcp2k;
 using UnityEngine;
 using Mirror;
 
@@ -19,7 +20,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
         [HideInInspector]
         protected NetworkManager _networkManager;
 
-        private IgnoranceTransport _transportLayer;
+        private IgnoranceTransport.Ignorance _transportLayer;
 
         [SerializeField]
         protected BluetoothNetworkManagerSettings _bluetoothNetworkManagerSettings = new BluetoothNetworkManagerSettings();
@@ -44,7 +45,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
 
         protected virtual void OnEnable() {
             _networkManager = GetComponent<NetworkManager>();
-            _transportLayer = GetComponent<IgnoranceTransport>();
+            _transportLayer = GetComponent<IgnoranceTransport.Ignorance>();
 
             // Setting the UUID. Must be unique for every application
             _isInitialized = AndroidBluetoothMultiplayer.Initialize(_bluetoothNetworkManagerSettings.Uuid);
@@ -149,7 +150,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
             }
 
             // Trying to connect to the device picked by user
-            AndroidBluetoothMultiplayer.Connect(device.Address, (ushort)_transportLayer.CommunicationPort);
+            AndroidBluetoothMultiplayer.Connect(device.Address, (ushort)_transportLayer.port);
         }
 
         protected virtual void OnBluetoothClientDisconnected(BluetoothDevice device) {
@@ -219,7 +220,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
             switch (_desiredMode) {
                 case BluetoothMultiplayerMode.Server:
                     StopAll();
-                    AndroidBluetoothMultiplayer.StartServer((ushort)_transportLayer.CommunicationPort);
+                    AndroidBluetoothMultiplayer.StartServer((ushort)_transportLayer.port);
                     break;
                 case BluetoothMultiplayerMode.Client:
                     StopAll();
@@ -280,7 +281,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
             if (AndroidBluetoothMultiplayer.GetIsBluetoothEnabled()) {
                 AndroidBluetoothMultiplayer.RequestEnableDiscoverability(_bluetoothNetworkManagerSettings.DefaultBluetoothDiscoverabilityInterval);
                 StopAll(); // Just to be sure
-                AndroidBluetoothMultiplayer.StartServer((ushort)_transportLayer.CommunicationPort);
+                AndroidBluetoothMultiplayer.StartServer((ushort)_transportLayer.port);
             } else {
                 // Otherwise, we have to enable Bluetooth first and wait for callback
                 _desiredMode = BluetoothMultiplayerMode.Server;

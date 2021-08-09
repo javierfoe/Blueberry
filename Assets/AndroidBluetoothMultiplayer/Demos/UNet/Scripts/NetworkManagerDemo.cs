@@ -63,7 +63,7 @@ public class NetworkManagerDemo : NetworkManager
     }
 
     // Called when client receives a CreateTapMarkerMessage
-    private void OnClientCreateTapMarkerHandler(NetworkConnection connection, CreateTapMarkerMessage createTapMarkerMessage)
+    private void OnClientCreateTapMarkerHandler(CreateTapMarkerMessage createTapMarkerMessage)
     {
         Instantiate(TapMarkerPrefab, createTapMarkerMessage.Position, Quaternion.identity);
     }

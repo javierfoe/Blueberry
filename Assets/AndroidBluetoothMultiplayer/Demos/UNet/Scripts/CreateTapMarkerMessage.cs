@@ -2,7 +2,7 @@
 using Mirror;
 
 namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
-    public class CreateTapMarkerMessage : MessageBase {
+    public struct CreateTapMarkerMessage : NetworkMessage {
         // Some arbitrary message type id number
         public const short kMessageType = 12345;
 

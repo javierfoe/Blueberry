@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace LostPolygon.AndroidBluetoothMultiplayer.Examples {
     /// <summary>
@@ -34,27 +35,15 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples {
             }
         }
 
-    public static string LoadedLevelName {
-        get {
-#if UNITY_NEW_SCENE_MANAGEMENT
-            return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-#else
-            return Application.loadedLevelName;
-#endif
-        }
-    }
+    public static string LoadedLevelName => SceneManager.GetActiveScene().name;
 
     public static void LoadLevel(string name) {
-#if UNITY_NEW_SCENE_MANAGEMENT
-        UnityEngine.SceneManagement.SceneManager.LoadScene(name, UnityEngine.SceneManagement.LoadSceneMode.Single);
-#else
-        Application.LoadLevel(name);
-#endif
+        SceneManager.LoadScene(name, LoadSceneMode.Single);
     }
 
 #if UNITY_ANDROID
         public static string FormatDevice(BluetoothDevice device) {
-            return string.Format("{0} [{1}], class: {2}, connectable: {3}", device.Name, device.Address, device.DeviceClass, device.IsConnectable);
+            return $"{device.Name} [{device.Address}], class: {device.DeviceClass}, connectable: {device.IsConnectable}";
         }
 #endif
     }
