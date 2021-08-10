@@ -169,8 +169,8 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Editor {
             try {
                 string unityContentsPath = EditorApplication.applicationContentsPath;
 
-                string[] manifestPathComponentsStyle1 = { "PlaybackEngines", "androidplayer", "Apk", "AndroidManifest.xml" };
-                string[] manifestPathComponentsStyle2 = { "PlaybackEngines", "androidplayer", "AndroidManifest.xml" };
+                string[] manifestPathComponentsStyle1 = { "PlaybackEngines", "androidplayer", "Apk", "UnityManifest.xml" };
+                string[] manifestPathComponentsStyle2 = { "PlaybackEngines", "androidplayer", "UnityManifest.xml" };
 
                 string manifestPath = PathCombine(unityContentsPath, PathCombine(manifestPathComponentsStyle1));
 
