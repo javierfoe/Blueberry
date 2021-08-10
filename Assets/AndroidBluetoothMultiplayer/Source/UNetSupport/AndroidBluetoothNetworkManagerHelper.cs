@@ -100,17 +100,17 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
 
         /// <seealso cref="NetworkManager.StartClient()"/>
         public void StartClient() {
-            StartBluetoothClient(() => _networkManager.StartClient());
+            StartBluetoothClient(_networkManager.StartClient);
         }
 
         /// <seealso cref="NetworkManager.StartServer()"/>
         public void StartServer() {
-            StartBluetoothHost(() => _networkManager.StartServer());
+            StartBluetoothHost(_networkManager.StartServer);
         }
 
         /// <seealso cref="NetworkManager.StartHost()"/>
         public void StartHost() {
-            StartBluetoothHost(() => _networkManager.StartHost());
+            StartBluetoothHost(_networkManager.StartHost);
         }
 
         #endregion
@@ -250,7 +250,6 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
         #endregion
 
         private void StartBluetoothClient(Action onReadyAction) {
-#if !UNITY_EDITOR
             _clientAction = onReadyAction;
 
             // If Bluetooth is enabled, immediately open the device picker
@@ -267,13 +266,9 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
                 _desiredMode = BluetoothMultiplayerMode.Client;
                 AndroidBluetoothMultiplayer.RequestEnableBluetooth();
             }
-#else
-            onReadyAction();
-#endif
         }
 
         private void StartBluetoothHost(Action onReadyAction) {
-#if !UNITY_EDITOR
             _hostAction = onReadyAction;
 
             // If Bluetooth is enabled, immediately start the Bluetooth server
@@ -286,9 +281,6 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
                 _desiredMode = BluetoothMultiplayerMode.Server;
                 AndroidBluetoothMultiplayer.RequestEnableDiscoverability(_bluetoothNetworkManagerSettings.DefaultBluetoothDiscoverabilityInterval);
             }
-#else
-            onReadyAction();
-#endif
         }
 
         private void StopAll() {
@@ -314,80 +306,5 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
             }
         }
 #endif
-
-        /// <summary>
-        /// Container of Bluetooth-related settings.
-        /// </summary>
-        [Serializable]
-        public class BluetoothNetworkManagerSettings {
-            [Tooltip("Bluetooth service application identifier, must be unique for every application. " +
-                     "If you have multiple scenes with different NetworkManager's in your project, " +
-                     "make sure the UUID is identical everywhere, otherwise Bluetooth connections will fail.")]
-            [SerializeField]
-            protected string _uuid = "";
-
-            [Tooltip("Bluetooth discoverability interval. Server is made discoverable over Bluetooth, so clients would " +
-                     "have the ability to locate the server. On Android 4.0 and higher, value of 0 allows making device discoverable " +
-                     "\"forever\" (until discoverability is disabled manually or Bluetooth is disabled).")]
-            [SerializeField]
-            protected int _defaultBluetoothDiscoverabilityInterval = 120;
-
-            [Tooltip("Indicates whether to stop the Bluetooth server when listening " +
-                     "for incoming Bluetooth connections has stopped.")]
-            [SerializeField]
-            protected bool _stopBluetoothServerOnListeningStopped = true;
-
-            [Tooltip("Indicates whether Android Bluetooth Multiplayer events should be logged.")]
-            [SerializeField]
-            protected bool _logBluetoothEvents;
-
-            /// <summary>
-            /// Gets or sets the Bluetooth service UUID.
-            /// </summary>
-            /// <value>
-            /// The UUID. Must be unique for every application
-            /// </value>
-            /// <exception cref="ArgumentException">UUID can't be empty.</exception>
-            public string Uuid {
-                get { return _uuid; }
-                set {
-                    if (String.IsNullOrEmpty(value))
-                        throw new ArgumentException("UUID can't be empty", "value");
-
-                    _uuid = value;
-                }
-            }
-
-            /// <summary>
-            /// Gets or sets the default Bluetooth discoverability interval.
-            /// </summary>
-            /// <exception cref="ArgumentException">Discoverability interval can't be less than 0.</exception>
-            public int DefaultBluetoothDiscoverabilityInterval {
-                get { return _defaultBluetoothDiscoverabilityInterval; }
-                set {
-                    if (value < 0)
-                        throw new ArgumentException("Discoverability interval can't be < 0", "value");
-
-                    _defaultBluetoothDiscoverabilityInterval = value;
-                }
-            }
-
-            /// <summary>
-            /// Gets or sets a value indicating whether to stop the Bluetooth server when listening
-            /// for incoming Bluetooth connections has stopped.
-            /// </summary>
-            public bool StopBluetoothServerOnListeningStopped {
-                get { return _stopBluetoothServerOnListeningStopped; }
-                set { _stopBluetoothServerOnListeningStopped = value; }
-            }
-
-            /// <summary>
-            /// Gets or sets a value indicating whether Android Bluetooth Multiplayer events should be logged.
-            /// </summary>
-            public bool LogBluetoothEvents {
-                get { return _logBluetoothEvents; }
-                set { _logBluetoothEvents = value; }
-            }
-        }
     }
 }

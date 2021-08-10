@@ -2,8 +2,10 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
-    public class BluetoothMultiplayerDemoGui : BluetoothDemoGuiBase {
+namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet
+{
+    public class BluetoothMultiplayerDemoGui : MonoBehaviour
+    {
         public GameObject TapMarkerPrefab;
 
         public AndroidBluetoothNetworkManagerHelper AndroidBluetoothNetworkManagerHelper;
@@ -21,24 +23,63 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
         public Toggle StressTestToggle;
         public Toggle UseCustomDeviceBrowserUIToggle;
 
+        protected virtual void OnEnable()
+        {
 #if !UNITY_ANDROID
-        private void Awake() {
-            Debug.LogError("Build platform is not set to Android. Please choose Android as build Platform in File - Build Settings...");
-        }
-
-        protected override void OnEnable() {
-            base.OnEnable();
-
             UIPanelGameObject.SetActive(false);
             ErrorUIPanelGameObject.SetActive(true);
+#endif
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
         }
-#else
 
-        protected override void Update() {
-            base.Update();
+        protected virtual void OnDisable()
+        {
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded -= SceneManagerOnSceneLoaded;
+        }
+
+        private void SceneManagerOnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode)
+        {
+            SceneLoadedHandler(scene.buildIndex);
+        }
+
+        protected virtual void SceneLoadedHandler(int buildIndex)
+        {
+            Screen.sleepTimeout = 500;
+            CameraFade.StartAlphaFade(Color.black, true, 0.25f, 0.0f);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            Screen.sleepTimeout = SleepTimeout.SystemSetting;
+        }
+
+        protected void DrawBackButton(float scaleFactor)
+        {
+            GUI.contentColor = Color.white;
+            if (GUI.Button(new Rect(Screen.width / scaleFactor - (100f + 15f), Screen.height / scaleFactor - (40f + 15f), 100f, 40f), "Back"))
+            {
+                GoBackToMenu();
+            }
+        }
+
+        protected void GoBackToMenu()
+        {
+#if UNITY_ANDROID
+            OnGoingBackToMenu();
+#endif
+            CameraFade.StartAlphaFade(Color.black, false, 0.25f, 0f, () => BluetoothExamplesTools.LoadLevel("BluetoothDemoMenu"));
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                GoBackToMenu();
+            }
 
             // Spawn an effect where user has tapped
-            if (NetworkClient.active && Input.GetMouseButtonDown(0)) {
+            if (NetworkClient.active && Input.GetMouseButtonDown(0))
+            {
                 Vector2 tapPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
                 // Send the message with the tap position to the server, so it can send it to other clients
@@ -59,7 +100,8 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
             StartServerButtonGameObject.SetActive(currentMode == BluetoothMultiplayerMode.None);
             ConnectToServerButtonGameObject.SetActive(currentMode == BluetoothMultiplayerMode.None);
             DisconnectButtonGameObject.SetActive(currentMode != BluetoothMultiplayerMode.None);
-            if (DisconnectButtonGameObject.activeInHierarchy) {
+            if (DisconnectButtonGameObject.activeInHierarchy)
+            {
                 DisconnectButtonGameObject.GetComponentInChildren<Text>().text = currentMode == BluetoothMultiplayerMode.Client ? "Disconnect" : "Stop server";
             }
 
@@ -76,44 +118,56 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
             NetworkManagerDemo.StressTestMode = StressTestToggle.isOn;
         }
 
-        private void Awake() {
+        private void Awake()
+        {
+
+#if !UNITY_ANDROID
+            Debug.LogError("Build platform is not set to Android. Please choose Android as build Platform in File - Build Settings...");
+#endif
             // Enabling verbose logging. See logcat!
             AndroidBluetoothMultiplayer.SetVerboseLog(true);
         }
 
-        protected override void OnGoingBackToMenu() {
+        private void OnGoingBackToMenu()
+        {
             // Gracefully closing all Bluetooth connectivity and loading the menu
-            try {
+            try
+            {
                 NetworkManagerDemo.StopHost();
                 AndroidBluetoothMultiplayer.StopDiscovery();
                 AndroidBluetoothMultiplayer.Stop();
-            } catch {
+            }
+            catch
+            {
                 //
             }
         }
 
         #region UI Handlers
 
-        public void OnBackToMenuButton() {
+        public void OnBackToMenuButton()
+        {
             GoBackToMenu();
         }
 
-        public void OnStartServerButton() {
+        public void OnStartServerButton()
+        {
             AndroidBluetoothNetworkManagerHelper.StartHost();
         }
 
-        public void OnConnectToServerButton() {
+        public void OnConnectToServerButton()
+        {
             AndroidBluetoothNetworkManagerHelper.SetCustomDeviceBrowser(UseCustomDeviceBrowserUIToggle.isOn ? CustomDeviceBrowser : null);
             AndroidBluetoothNetworkManagerHelper.StartClient();
         }
 
-        public void OnDisconnectButton() {
+        public void OnDisconnectButton()
+        {
             AndroidBluetoothMultiplayer.StopDiscovery();
             AndroidBluetoothMultiplayer.Stop();
             NetworkManagerDemo.StopHost();
         }
 
         #endregion
-#endif
     }
 }

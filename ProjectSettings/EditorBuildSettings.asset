@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/AndroidBluetoothMultiplayer/Demos/UNet/BluetoothMultiplayerDemo.unity
+    path: Assets/AndroidBluetoothMultiplayer/Demo/Scenes/BluetoothMultiplayerDemo.unity
     guid: e45614ac4da622849b314ef4c5157795
   - enabled: 0
-    path: Assets/AndroidBluetoothMultiplayer/Demos/UNet/PCDemo.unity
+    path: Assets/AndroidBluetoothMultiplayer/Demo/Scenes/PCDemo.unity
     guid: 59501ea6916715d40be64619f9a7b824
   m_configObjects: {}
