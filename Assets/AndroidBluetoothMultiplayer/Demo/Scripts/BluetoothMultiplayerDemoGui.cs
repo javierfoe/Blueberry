@@ -1,6 +1,7 @@
 using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet
 {
@@ -67,7 +68,12 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet
 #if UNITY_ANDROID
             OnGoingBackToMenu();
 #endif
-            CameraFade.StartAlphaFade(Color.black, false, 0.25f, 0f, () => BluetoothExamplesTools.LoadLevel("BluetoothDemoMenu"));
+            CameraFade.StartAlphaFade(Color.black, false, 0.25f, 0f, () => LoadLevel("BluetoothDemoMenu"));
+        }
+
+        private void LoadLevel(string name)
+        {
+            SceneManager.LoadScene(name, LoadSceneMode.Single);
         }
 
         private void Update()
