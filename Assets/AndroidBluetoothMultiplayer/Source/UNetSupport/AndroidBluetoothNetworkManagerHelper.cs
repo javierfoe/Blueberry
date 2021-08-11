@@ -65,7 +65,13 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
             AndroidBluetoothMultiplayer.DevicePicked += OnBluetoothDevicePicked;
         }
 
-        protected virtual void OnDisable() {
+        protected virtual void OnDisable()
+        {
+
+#if UNITY_ANDROID
+            // Stopping all Bluetooth connectivity on Unity networking disconnect event
+            AndroidBluetoothMultiplayer.Stop();
+#endif
             // Unregistering the event listeners
             AndroidBluetoothMultiplayer.ListeningStarted -= OnBluetoothListeningStarted;
             AndroidBluetoothMultiplayer.ListeningStopped -= OnBluetoothListeningStopped;

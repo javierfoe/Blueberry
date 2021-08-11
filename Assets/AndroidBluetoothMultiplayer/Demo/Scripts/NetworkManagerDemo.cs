@@ -3,7 +3,6 @@ using Mirror;
 using Random = UnityEngine.Random;
 using System.Collections.Generic;
 using LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet;
-using LostPolygon.AndroidBluetoothMultiplayer;
 
 public class NetworkManagerDemo : NetworkManager
 {
@@ -25,16 +24,6 @@ public class NetworkManagerDemo : NetworkManager
         base.OnStartClient();
 
         NetworkClient.RegisterHandler<CreateTapMarkerMessage>(OnClientCreateTapMarkerHandler);
-    }
-
-    public override void OnStopClient()
-    {
-        base.OnStopClient();
-
-#if UNITY_ANDROID
-        // Stopping all Bluetooth connectivity on Unity networking disconnect event
-        AndroidBluetoothMultiplayer.Stop();
-#endif
     }
 
     public override void OnServerReady(NetworkConnection conn)
