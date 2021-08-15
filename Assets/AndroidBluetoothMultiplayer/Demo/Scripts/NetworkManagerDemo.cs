@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using Mirror;
-using Random = UnityEngine.Random;
-using System.Collections.Generic;
 using LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet;
+using System.Collections.Generic;
 
 public class NetworkManagerDemo : NetworkManager
 {
