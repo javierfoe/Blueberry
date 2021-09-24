@@ -1,6 +1,4 @@
-﻿#if UNITY_ANDROID
-
-using System;
+﻿using System;
 
 namespace LostPolygon.AndroidBluetoothMultiplayer {
     /// <summary>
@@ -14,5 +12,3 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
         void Close();
     }
 }
-
-#endif

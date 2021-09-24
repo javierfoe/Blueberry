@@ -163,7 +163,9 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet
 
         public void OnConnectToServerButton()
         {
+#if UNITY_ANDROID
             AndroidBluetoothNetworkManagerHelper.SetCustomDeviceBrowser(UseCustomDeviceBrowserUIToggle.isOn ? CustomDeviceBrowser : null);
+#endif
             AndroidBluetoothNetworkManagerHelper.StartClient();
         }
 

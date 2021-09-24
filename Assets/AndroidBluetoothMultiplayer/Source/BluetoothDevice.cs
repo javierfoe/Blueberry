@@ -1,5 +1,3 @@
-#if UNITY_ANDROID
-
 using System;
 using UnityEngine;
 using LostPolygon.AndroidBluetoothMultiplayer.Internal;
@@ -130,5 +128,3 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
         }
     }
 }
-
-#endif

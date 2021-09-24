@@ -1,5 +1,3 @@
-#if UNITY_ANDROID
-
 using System;
 
 namespace LostPolygon.AndroidBluetoothMultiplayer {
@@ -200,5 +198,3 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
         #endregion Event handlers
     }
 }
-
-#endif

@@ -1,6 +1,4 @@
-﻿#if UNITY_ANDROID
-
-namespace LostPolygon.AndroidBluetoothMultiplayer {
+﻿namespace LostPolygon.AndroidBluetoothMultiplayer {
     /// <summary>
     /// A helper class that simplifies working with Bluetooth device classes.
     /// </summary>
@@ -158,5 +156,3 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
         }
     }
 }
-
-#endif

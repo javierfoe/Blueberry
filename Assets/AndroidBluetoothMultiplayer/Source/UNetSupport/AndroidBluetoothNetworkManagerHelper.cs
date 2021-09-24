@@ -24,7 +24,6 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
         [SerializeField]
         protected BluetoothNetworkManagerSettings _bluetoothNetworkManagerSettings = new BluetoothNetworkManagerSettings();
 
-#if UNITY_ANDROID
         private bool _isInitialized;
         private BluetoothMultiplayerMode _desiredMode = BluetoothMultiplayerMode.None;
         private Action _clientAction;
@@ -299,7 +298,6 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
             _clientAction = null;
             _hostAction = null;
         }
-#endif
 
 #if UNITY_EDITOR
         protected virtual void Reset() {

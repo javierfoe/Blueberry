@@ -1,11 +1,11 @@
 # Multiplayer-Bluetooth-Unity
-Made the Android Bluetooth Multiplayer asset work on Unity 2020.3.15f2 with Mirror and Ignorance.
+Made the Android Bluetooth Multiplayer asset work on Unity 2020.3.19f2 with Mirror and Ignorance.
 
 First clone the repository, then download the following Mirror and Ignorance versions, in this order.
 
 Mirror:
 
-https://github.com/vis2k/Mirror/releases/tag/v44.0.3
+https://github.com/vis2k/Mirror/releases/tag/v45.2.0
 
 Ignorance:
 

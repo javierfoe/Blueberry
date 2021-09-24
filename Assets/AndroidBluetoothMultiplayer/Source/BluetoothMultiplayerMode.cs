@@ -1,5 +1,3 @@
-#if UNITY_ANDROID
-
 namespace LostPolygon.AndroidBluetoothMultiplayer {
     /// <summary>
     /// Represents the state in which the plugin operates.
@@ -21,5 +19,3 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
         Client = 2
     }
 }
-
-#endif
