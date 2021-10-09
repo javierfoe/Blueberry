@@ -194,11 +194,10 @@ MonoBehaviour:
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 100000, guid: 5014312347ddd42488d9e931ab339ee2, type: 3}
-  autoCreatePlayer: 0
+  autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
   TapMarkerPrefab: {fileID: 100000, guid: 35d7c816fe90dd14abe07e982f7c3705, type: 3}
-  StressTestMode: 0
 --- !u!4 &262133279
 Transform:
   m_ObjectHideFlags: 0

@@ -2,7 +2,8 @@
 using UnityEngine;
 using Mirror;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer {
+namespace LostPolygon.AndroidBluetoothMultiplayer
+{
     /// <summary>
     /// A helper class that works in conjunction with <see cref="NetworkManager"/>.
     /// It automatically manages enabling Bluetooth, showing the device picker,
@@ -14,7 +15,9 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
     /// </example>
     [RequireComponent(typeof(NetworkManager))]
     [AddComponentMenu("Network/Android Bluetooth Multiplayer/AndroidBluetoothNetworkManagerHelper")]
-    public class AndroidBluetoothNetworkManagerHelper : MonoBehaviour {
+    public class AndroidBluetoothNetworkManagerHelper : MonoBehaviour
+    {
+
         [SerializeField]
         [HideInInspector]
         protected NetworkManager _networkManager;
@@ -30,18 +33,15 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
         private Action _hostAction;
 
         /// <summary>
-        /// A custom Bluetooth device browser can be used instead of native Android one.
-        /// </summary>
-        private ICustomDeviceBrowser _customDeviceBrowser;
-
-        /// <summary>
         /// Gets a value indicating whether the plugin has initialized successfully.
         /// </summary>
-        public bool IsInitialized {
+        public bool IsInitialized
+        {
             get { return _isInitialized; }
         }
 
-        protected virtual void OnEnable() {
+        protected virtual void OnEnable()
+        {
             _networkManager = GetComponent<NetworkManager>();
             _transportLayer = GetComponent<IgnoranceTransport.Ignorance>();
 
@@ -86,91 +86,96 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
             AndroidBluetoothMultiplayer.ClientDisconnected -= OnBluetoothClientDisconnected;
             AndroidBluetoothMultiplayer.DevicePicked -= OnBluetoothDevicePicked;
         }
-
-        /// <summary>
-        /// Sets the custom Bluetooth device browser.
-        /// </summary>
-        public virtual void SetCustomDeviceBrowser(ICustomDeviceBrowser customDeviceBrowser) {
-            if (_customDeviceBrowser != null) {
-                _customDeviceBrowser.OnDevicePicked -= OnBluetoothDevicePicked;
-            }
-
-            _customDeviceBrowser = customDeviceBrowser;
-            if (_customDeviceBrowser != null) {
-                _customDeviceBrowser.OnDevicePicked += OnBluetoothDevicePicked;
-            }
-        }
-
         #region NetworkManager methods
 
         /// <seealso cref="NetworkManager.StartClient()"/>
-        public void StartClient() {
+        public void StartClient()
+        {
             StartBluetoothClient(_networkManager.StartClient);
         }
 
         /// <seealso cref="NetworkManager.StartServer()"/>
-        public void StartServer() {
+        public void StartServer()
+        {
             StartBluetoothHost(_networkManager.StartServer);
         }
 
         /// <seealso cref="NetworkManager.StartHost()"/>
-        public void StartHost() {
+        public void StartHost()
+        {
             StartBluetoothHost(_networkManager.StartHost);
+        }
+
+        public void StopHost()
+        {
+            _networkManager.StopHost();
+            AndroidBluetoothMultiplayer.StopDiscovery();
+            AndroidBluetoothMultiplayer.Stop();
         }
 
         #endregion
 
         #region Bluetooth events
 
-        protected virtual void OnBluetoothListeningStarted() {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents) {
+        protected virtual void OnBluetoothListeningStarted()
+        {
+            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            {
                 Debug.Log("Bluetooth Event - ListeningStarted");
             }
 
             // Starting networking server if Bluetooth listening started successfully
-            if (_hostAction != null) {
+            if (_hostAction != null)
+            {
                 _hostAction();
                 _hostAction = null;
             }
         }
 
-        protected virtual void OnBluetoothListeningStopped() {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents) {
+        protected virtual void OnBluetoothListeningStopped()
+        {
+            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            {
                 Debug.Log("Bluetooth Event - ListeningStopped");
             }
 
-            if (_bluetoothNetworkManagerSettings.StopBluetoothServerOnListeningStopped) {
+            if (_bluetoothNetworkManagerSettings.StopBluetoothServerOnListeningStopped)
+            {
                 AndroidBluetoothMultiplayer.Stop();
             }
         }
 
-        protected virtual void OnBluetoothDevicePicked(BluetoothDevice device) {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents) {
+        protected virtual void OnBluetoothDevicePicked(BluetoothDevice device)
+        {
+            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            {
                 Debug.Log("Bluetooth Event - DevicePicked: " + device);
-            }
-
-            if (_customDeviceBrowser != null) {
-                _customDeviceBrowser.Close();
             }
 
             // Trying to connect to the device picked by user
             AndroidBluetoothMultiplayer.Connect(device.Address, (ushort)_transportLayer.port);
         }
 
-        protected virtual void OnBluetoothClientDisconnected(BluetoothDevice device) {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents) {
+        protected virtual void OnBluetoothClientDisconnected(BluetoothDevice device)
+        {
+            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            {
                 Debug.Log("Bluetooth Event - ClientDisconnected: " + device);
             }
         }
 
-        protected virtual void OnBluetoothClientConnected(BluetoothDevice device) {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents) {
+        protected virtual void OnBluetoothClientConnected(BluetoothDevice device)
+        {
+            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            {
                 Debug.Log("Bluetooth Event - ClientConnected: " + device);
             }
         }
 
-        protected virtual void OnBluetoothDisconnectedFromServer(BluetoothDevice device) {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents) {
+        protected virtual void OnBluetoothDisconnectedFromServer(BluetoothDevice device)
+        {
+            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            {
                 Debug.Log("Bluetooth Event - DisconnectedFromServer: " + device);
             }
 
@@ -179,49 +184,62 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
             ClearState();
         }
 
-        protected virtual void OnBluetoothConnectionToServerFailed(BluetoothDevice device) {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents) {
+        protected virtual void OnBluetoothConnectionToServerFailed(BluetoothDevice device)
+        {
+            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            {
                 Debug.Log("Bluetooth Event - ConnectionToServerFailed: " + device);
             }
         }
 
-        protected virtual void OnBluetoothConnectedToServer(BluetoothDevice device) {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents) {
+        protected virtual void OnBluetoothConnectedToServer(BluetoothDevice device)
+        {
+            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            {
                 Debug.Log("Bluetooth Event - ConnectedToServer: " + device);
             }
 
             // Trying to negotiate a Unity networking connection,
             // when Bluetooth client connected successfully
-            if (_clientAction != null) {
+            if (_clientAction != null)
+            {
                 _clientAction();
                 _clientAction = null;
             }
         }
 
-        protected virtual void OnBluetoothAdapterDisabled() {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents) {
+        protected virtual void OnBluetoothAdapterDisabled()
+        {
+            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            {
                 Debug.Log("Bluetooth Event - AdapterDisabled");
             }
 
-            if (NetworkServer.active) {
+            if (NetworkServer.active)
+            {
                 StopAll();
                 ClearState();
             }
         }
 
-        protected virtual void OnBluetoothAdapterEnableFailed() {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents) {
+        protected virtual void OnBluetoothAdapterEnableFailed()
+        {
+            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            {
                 Debug.Log("Bluetooth Event - AdapterEnableFailed");
             }
         }
 
-        protected virtual void OnBluetoothAdapterEnabled() {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents) {
+        protected virtual void OnBluetoothAdapterEnabled()
+        {
+            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            {
                 Debug.Log("Bluetooth Event - AdapterEnabled");
             }
 
             // Resuming desired action after enabling the adapter
-            switch (_desiredMode) {
+            switch (_desiredMode)
+            {
                 case BluetoothMultiplayerMode.Server:
                     StopAll();
                     AndroidBluetoothMultiplayer.StartServer((ushort)_transportLayer.port);
@@ -229,83 +247,92 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
                 case BluetoothMultiplayerMode.Client:
                     StopAll();
                     // Open device picker dialog
-                    if (_customDeviceBrowser != null) {
-                        _customDeviceBrowser.Open();
-                    } else {
-                        AndroidBluetoothMultiplayer.ShowDeviceList();
-                    }
+                    AndroidBluetoothMultiplayer.ShowDeviceList();
                     break;
             }
 
             _desiredMode = BluetoothMultiplayerMode.None;
         }
 
-        protected virtual void OnBluetoothDiscoverabilityEnableFailed() {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents) {
+        protected virtual void OnBluetoothDiscoverabilityEnableFailed()
+        {
+            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            {
                 Debug.Log("Bluetooth Event - DiscoverabilityEnableFailed");
             }
         }
 
-        protected virtual void OnBluetoothDiscoverabilityEnabled(int discoverabilityDuration) {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents) {
+        protected virtual void OnBluetoothDiscoverabilityEnabled(int discoverabilityDuration)
+        {
+            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            {
                 Debug.Log(string.Format("Event - DiscoverabilityEnabled: {0} seconds", discoverabilityDuration));
             }
         }
 
         #endregion
 
-        private void StartBluetoothClient(Action onReadyAction) {
+        private void StartBluetoothClient(Action onReadyAction)
+        {
             _clientAction = onReadyAction;
 
             // If Bluetooth is enabled, immediately open the device picker
-            if (AndroidBluetoothMultiplayer.GetIsBluetoothEnabled()) {
+            if (AndroidBluetoothMultiplayer.GetIsBluetoothEnabled())
+            {
                 StopAll();
                 // Open device picker dialog
-                if (_customDeviceBrowser != null) {
-                    _customDeviceBrowser.Open();
-                } else {
-                    AndroidBluetoothMultiplayer.ShowDeviceList();
-                }
-            } else {
+                AndroidBluetoothMultiplayer.ShowDeviceList();
+            }
+            else
+            {
                 // Otherwise, we have to enable Bluetooth first and wait for callback
                 _desiredMode = BluetoothMultiplayerMode.Client;
                 AndroidBluetoothMultiplayer.RequestEnableBluetooth();
             }
         }
 
-        private void StartBluetoothHost(Action onReadyAction) {
+        private void StartBluetoothHost(Action onReadyAction)
+        {
             _hostAction = onReadyAction;
 
             // If Bluetooth is enabled, immediately start the Bluetooth server
-            if (AndroidBluetoothMultiplayer.GetIsBluetoothEnabled()) {
+            if (AndroidBluetoothMultiplayer.GetIsBluetoothEnabled())
+            {
                 AndroidBluetoothMultiplayer.RequestEnableDiscoverability(_bluetoothNetworkManagerSettings.DefaultBluetoothDiscoverabilityInterval);
                 StopAll(); // Just to be sure
                 AndroidBluetoothMultiplayer.StartServer((ushort)_transportLayer.port);
-            } else {
+            }
+            else
+            {
                 // Otherwise, we have to enable Bluetooth first and wait for callback
                 _desiredMode = BluetoothMultiplayerMode.Server;
                 AndroidBluetoothMultiplayer.RequestEnableDiscoverability(_bluetoothNetworkManagerSettings.DefaultBluetoothDiscoverabilityInterval);
             }
         }
 
-        private void StopAll() {
-           AndroidBluetoothMultiplayer.Stop();
+        private void StopAll()
+        {
             _networkManager.StopHost();
+            AndroidBluetoothMultiplayer.Stop();
         }
 
-        private void ClearState() {
+        private void ClearState()
+        {
             _desiredMode = BluetoothMultiplayerMode.None;
             _clientAction = null;
             _hostAction = null;
         }
 
 #if UNITY_EDITOR
-        protected virtual void Reset() {
+        protected virtual void Reset()
+        {
             OnValidate();
         }
 
-        protected virtual void OnValidate() {
-            if (String.IsNullOrEmpty(_bluetoothNetworkManagerSettings.Uuid)) {
+        protected virtual void OnValidate()
+        {
+            if (String.IsNullOrEmpty(_bluetoothNetworkManagerSettings.Uuid))
+            {
                 _bluetoothNetworkManagerSettings.Uuid = Guid.NewGuid().ToString();
             }
         }

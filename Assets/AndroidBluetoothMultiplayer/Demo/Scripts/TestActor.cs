@@ -55,6 +55,11 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet
                 _destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 _destination += (Vector3)(Random.insideUnitCircle * PositionRandomOffset);
                 CmdDestination(_destination);
+
+                //Send tap
+                Vector2 tapPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                // Send the message with the tap position to the server, so it can send it to other clients
+                NetworkClient.Send(new CreateTapMarkerMessage { Position = tapPosition });
             }
         }
 

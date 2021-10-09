@@ -6,9 +6,6 @@ using System.Collections.Generic;
 public class NetworkManagerDemo : NetworkManager
 {
     public GameObject TapMarkerPrefab; // Reference to the tap effect
-    public bool StressTestMode;
-
-    private const int kStressModeActors = 30;
 
     public override void OnStartServer()
     {
@@ -23,31 +20,6 @@ public class NetworkManagerDemo : NetworkManager
         base.OnStartClient();
 
         NetworkClient.RegisterHandler<CreateTapMarkerMessage>(OnClientCreateTapMarkerHandler);
-    }
-
-    public override void OnServerReady(NetworkConnection conn)
-    {
-        base.OnServerReady(conn);
-
-        // Spawn the controllable actors
-        int actorCount = !StressTestMode ? 1 : kStressModeActors;
-        GameObject player = null;
-        for (int i = 0; i < actorCount; i++)
-        {
-            Vector3 position = Random.insideUnitCircle * 15f;
-            player = (GameObject)Instantiate(playerPrefab, position, Quaternion.identity);
-            TestActor testActor = player.GetComponent<TestActor>();
-
-            // Make them smaller and more random in stress test mode
-            if (StressTestMode)
-            {
-                testActor.PositionRandomOffset = 10f;
-                player.transform.localScale *= 0.5f;
-                testActor.TransformLocalScale = player.transform.localScale;
-            }
-            NetworkServer.Spawn(player, conn);
-        }
-        NetworkServer.AddPlayerForConnection(conn, player);
     }
 
     // Called when client receives a CreateTapMarkerMessage
@@ -67,9 +39,6 @@ public class NetworkManagerDemo : NetworkManager
         foreach (KeyValuePair<int, NetworkConnectionToClient> entry in NetworkServer.connections)
         {
             conn = entry.Value;
-            if (conn == null || conn == connection)
-                continue;
-
             conn.Send(createTapMarkerMessage);
         }
 
