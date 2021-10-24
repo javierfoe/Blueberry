@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Mirror;
-using LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet;
+using javierfoe.AndroidBluetoothMultiplayer.Examples.UNet;
 using System.Collections.Generic;
 
 public class NetworkManagerDemo : NetworkManager

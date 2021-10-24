@@ -1,6 +1,6 @@
 using System;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer {
+namespace javierfoe.AndroidBluetoothMultiplayer {
     /// <summary>
     /// Represents an error when code was attempting to use Bluetooth adapter when it was disabled.
     /// </summary>

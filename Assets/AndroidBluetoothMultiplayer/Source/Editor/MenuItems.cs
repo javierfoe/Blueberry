@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer.Editor {
+namespace javierfoe.AndroidBluetoothMultiplayer.Editor {
     internal class MenuItems : EditorWindow {
         private const string kMenuRoot = "Tools/Lost Polygon/Android Bluetooth Multiplayer/";
 

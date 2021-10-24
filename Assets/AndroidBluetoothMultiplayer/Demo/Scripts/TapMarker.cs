@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer.Examples {
+namespace javierfoe.AndroidBluetoothMultiplayer.Examples {
     public class TapMarker : MonoBehaviour {
         private const float kTimeToLive = 0.3f;
         private const float kScaleFactor = 50f;

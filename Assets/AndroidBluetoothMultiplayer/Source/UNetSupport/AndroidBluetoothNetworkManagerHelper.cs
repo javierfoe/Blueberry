@@ -2,7 +2,7 @@
 using UnityEngine;
 using Mirror;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer
+namespace javierfoe.AndroidBluetoothMultiplayer
 {
     /// <summary>
     /// A helper class that works in conjunction with <see cref="NetworkManager"/>.
@@ -20,7 +20,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer
 
         [SerializeField]
         [HideInInspector]
-        protected NetworkManager _networkManager;
+        private NetworkManager _networkManager;
 
         private IgnoranceTransport.Ignorance _transportLayer;
 
@@ -31,6 +31,9 @@ namespace LostPolygon.AndroidBluetoothMultiplayer
         private BluetoothMultiplayerMode _desiredMode = BluetoothMultiplayerMode.None;
         private Action _clientAction;
         private Action _hostAction;
+        private BluetoothDevice device;
+
+        public string ConnectedTo => device.Name;
 
         /// <summary>
         /// Gets a value indicating whether the plugin has initialized successfully.
@@ -166,6 +169,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer
 
         protected virtual void OnBluetoothClientConnected(BluetoothDevice device)
         {
+            this.device = device;
             if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - ClientConnected: " + device);

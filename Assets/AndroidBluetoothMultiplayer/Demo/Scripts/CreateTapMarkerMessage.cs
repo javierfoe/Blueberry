@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Mirror;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
+namespace javierfoe.AndroidBluetoothMultiplayer.Examples.UNet {
     public struct CreateTapMarkerMessage : NetworkMessage {
         // Some arbitrary message type id number
         public const short kMessageType = 12345;

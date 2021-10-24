@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer.Editor {
+namespace javierfoe.AndroidBluetoothMultiplayer.Editor {
     internal class UuidGenerator : EditorWindow {
 #if UNITY_ANDROID
         private string _uuid = "";

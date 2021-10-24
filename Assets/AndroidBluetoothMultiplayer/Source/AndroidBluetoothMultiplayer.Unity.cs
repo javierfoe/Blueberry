@@ -1,7 +1,7 @@
 using UnityEngine;
-using LostPolygon.AndroidBluetoothMultiplayer.Internal;
+using javierfoe.AndroidBluetoothMultiplayer.Internal;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer {
+namespace javierfoe.AndroidBluetoothMultiplayer {
     /// <summary>
     /// A core class that wraps Java methods of Android plugin.
     /// </summary>

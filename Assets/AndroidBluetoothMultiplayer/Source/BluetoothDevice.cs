@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using LostPolygon.AndroidBluetoothMultiplayer.Internal;
+using javierfoe.AndroidBluetoothMultiplayer.Internal;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer {
+namespace javierfoe.AndroidBluetoothMultiplayer {
     /// <summary>
     /// Represents a Bluetooth device.
     /// </summary>

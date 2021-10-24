@@ -1,4 +1,4 @@
-﻿namespace LostPolygon.AndroidBluetoothMultiplayer {
+﻿namespace javierfoe.AndroidBluetoothMultiplayer {
     /// <summary>
     /// A helper class that simplifies working with Bluetooth device classes.
     /// </summary>

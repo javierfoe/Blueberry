@@ -1,6 +1,6 @@
 using System;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer {
+namespace javierfoe.AndroidBluetoothMultiplayer {
     public sealed partial class AndroidBluetoothMultiplayer {
         #region Events
 

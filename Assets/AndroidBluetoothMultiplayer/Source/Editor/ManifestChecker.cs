@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer.Editor {
+namespace javierfoe.AndroidBluetoothMultiplayer.Editor {
     [InitializeOnLoad]
     internal class ManifestChecker {
         static ManifestChecker() {

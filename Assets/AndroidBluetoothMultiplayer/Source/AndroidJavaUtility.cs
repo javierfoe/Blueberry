@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer.Internal {
+namespace javierfoe.AndroidBluetoothMultiplayer.Internal {
     /// <summary>
     /// A collection of helpful extension methods.
     /// </summary>

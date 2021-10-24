@@ -1,4 +1,4 @@
-namespace LostPolygon.AndroidBluetoothMultiplayer {
+namespace javierfoe.AndroidBluetoothMultiplayer {
     /// <summary>
     /// Represents the state in which the plugin operates.
     /// </summary>

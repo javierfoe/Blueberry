@@ -8,7 +8,7 @@ using System.Xml.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace LostPolygon.AndroidBluetoothMultiplayer.Editor {
+namespace javierfoe.AndroidBluetoothMultiplayer.Editor {
     internal static class ManifestGenerator {
         private const string kCoarseLocationPermission = "android.permission.ACCESS_COARSE_LOCATION";
         private const string kFineLocationPermission = "android.permission.ACCESS_FINE_LOCATION";
@@ -28,9 +28,9 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Editor {
 
         private static readonly string[] kActivityNameReplaceTo =
         {
-            "com.lostpolygon.unity.bluetoothmediator.player.BluetoothUnityPlayerProxyActivity",
-            "com.lostpolygon.unity.bluetoothmediator.player.BluetoothUnityPlayerActivity",
-            "com.lostpolygon.unity.bluetoothmediator.player.BluetoothUnityPlayerNativeActivity"
+            "com.javierfoe.unity.bluetoothmediator.player.BluetoothUnityPlayerProxyActivity",
+            "com.javierfoe.unity.bluetoothmediator.player.BluetoothUnityPlayerActivity",
+            "com.javierfoe.unity.bluetoothmediator.player.BluetoothUnityPlayerNativeActivity"
         };
 
         public static void GenerateManifest() {
