@@ -83,11 +83,6 @@ namespace javierfoe.AndroidBluetoothMultiplayer
 
         void StatusLabels()
         {
-            // host mode
-            // display separately because this always confused people:
-            //   Server: ...
-            //   Client: ...
-            bool bluetoothClient = manager.IsBluetoothClientConnected;
             if (NetworkServer.active)
             {
                 //HOST
@@ -96,21 +91,22 @@ namespace javierfoe.AndroidBluetoothMultiplayer
                 //SERVER
                 else
                     GUILayout.Label($"<b>Server</b>: running via {Transport.activeTransport}");
+
+                StopButton(true);
             }
             //CLIENT
             else if (AndroidBluetoothMultiplayer.GetCurrentMode() == BluetoothMultiplayerMode.Client)
             {
+                bool bluetoothClient = manager.IsBluetoothClientConnected;
                 string label = $"<b>Client</b>: connect{(bluetoothClient ? "ed" : "ing")} to {manager.ServerDevice} via {Transport.activeTransport}";
                 GUILayout.Label(label);
+                StopButton(bluetoothClient);
             }
-
-            StopButton(bluetoothClient);
         }
 
         void StopButton(bool stop)
         {
             string label = stop ? "Stop" : "Cancel";
-            //Stop button
             if (GUILayout.Button(label, GUILayout.Height(100)))
             {
                 manager.StopHost();
