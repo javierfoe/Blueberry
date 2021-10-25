@@ -33,7 +33,8 @@ namespace javierfoe.AndroidBluetoothMultiplayer
         private Action _hostAction;
         private BluetoothDevice device;
 
-        public string ConnectedTo => device.Name;
+        public string ServerDevice => device != null ? device.Name : "";
+        public bool IsBluetoothClientConnected { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether the plugin has initialized successfully.
@@ -59,11 +60,11 @@ namespace javierfoe.AndroidBluetoothMultiplayer
             AndroidBluetoothMultiplayer.AdapterDisabled += OnBluetoothAdapterDisabled;
             AndroidBluetoothMultiplayer.DiscoverabilityEnabled += OnBluetoothDiscoverabilityEnabled;
             AndroidBluetoothMultiplayer.DiscoverabilityEnableFailed += OnBluetoothDiscoverabilityEnableFailed;
-            AndroidBluetoothMultiplayer.ConnectedToServer += OnBluetoothConnectedToServer;
+            AndroidBluetoothMultiplayer.ConnectedToServer += OnBluetoothClientConnected;
             AndroidBluetoothMultiplayer.ConnectionToServerFailed += OnBluetoothConnectionToServerFailed;
-            AndroidBluetoothMultiplayer.DisconnectedFromServer += OnBluetoothDisconnectedFromServer;
-            AndroidBluetoothMultiplayer.ClientConnected += OnBluetoothClientConnected;
-            AndroidBluetoothMultiplayer.ClientDisconnected += OnBluetoothClientDisconnected;
+            AndroidBluetoothMultiplayer.DisconnectedFromServer += OnBluetoothClientDisconnected;
+            AndroidBluetoothMultiplayer.ClientConnected += OnBluetoothServerConnected;
+            AndroidBluetoothMultiplayer.ClientDisconnected += OnBluetoothServerDisconnected;
             AndroidBluetoothMultiplayer.DevicePicked += OnBluetoothDevicePicked;
         }
 
@@ -82,11 +83,11 @@ namespace javierfoe.AndroidBluetoothMultiplayer
             AndroidBluetoothMultiplayer.AdapterDisabled -= OnBluetoothAdapterDisabled;
             AndroidBluetoothMultiplayer.DiscoverabilityEnabled -= OnBluetoothDiscoverabilityEnabled;
             AndroidBluetoothMultiplayer.DiscoverabilityEnableFailed -= OnBluetoothDiscoverabilityEnableFailed;
-            AndroidBluetoothMultiplayer.ConnectedToServer -= OnBluetoothConnectedToServer;
+            AndroidBluetoothMultiplayer.ConnectedToServer -= OnBluetoothClientConnected;
             AndroidBluetoothMultiplayer.ConnectionToServerFailed -= OnBluetoothConnectionToServerFailed;
-            AndroidBluetoothMultiplayer.DisconnectedFromServer -= OnBluetoothDisconnectedFromServer;
-            AndroidBluetoothMultiplayer.ClientConnected -= OnBluetoothClientConnected;
-            AndroidBluetoothMultiplayer.ClientDisconnected -= OnBluetoothClientDisconnected;
+            AndroidBluetoothMultiplayer.DisconnectedFromServer -= OnBluetoothClientDisconnected;
+            AndroidBluetoothMultiplayer.ClientConnected -= OnBluetoothServerConnected;
+            AndroidBluetoothMultiplayer.ClientDisconnected -= OnBluetoothServerDisconnected;
             AndroidBluetoothMultiplayer.DevicePicked -= OnBluetoothDevicePicked;
         }
         #region NetworkManager methods
@@ -150,6 +151,7 @@ namespace javierfoe.AndroidBluetoothMultiplayer
 
         protected virtual void OnBluetoothDevicePicked(BluetoothDevice device)
         {
+            this.device = device;
             if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - DevicePicked: " + device);
@@ -159,7 +161,8 @@ namespace javierfoe.AndroidBluetoothMultiplayer
             AndroidBluetoothMultiplayer.Connect(device.Address, (ushort)_transportLayer.port);
         }
 
-        protected virtual void OnBluetoothClientDisconnected(BluetoothDevice device)
+        //Called on the server when a client disconnects
+        protected virtual void OnBluetoothServerDisconnected(BluetoothDevice device)
         {
             if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
             {
@@ -167,17 +170,20 @@ namespace javierfoe.AndroidBluetoothMultiplayer
             }
         }
 
-        protected virtual void OnBluetoothClientConnected(BluetoothDevice device)
+        //Called on the server when a client is connected
+        protected virtual void OnBluetoothServerConnected(BluetoothDevice device)
         {
-            this.device = device;
             if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - ClientConnected: " + device);
             }
         }
 
-        protected virtual void OnBluetoothDisconnectedFromServer(BluetoothDevice device)
+        //Called on the client when disconnected from the server
+        protected virtual void OnBluetoothClientDisconnected(BluetoothDevice device)
         {
+            IsBluetoothClientConnected = false;
+            this.device = null;
             if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - DisconnectedFromServer: " + device);
@@ -188,16 +194,11 @@ namespace javierfoe.AndroidBluetoothMultiplayer
             ClearState();
         }
 
-        protected virtual void OnBluetoothConnectionToServerFailed(BluetoothDevice device)
+        //Called on the client when connected to the server
+        protected virtual void OnBluetoothClientConnected(BluetoothDevice device)
         {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
-            {
-                Debug.Log("Bluetooth Event - ConnectionToServerFailed: " + device);
-            }
-        }
-
-        protected virtual void OnBluetoothConnectedToServer(BluetoothDevice device)
-        {
+            IsBluetoothClientConnected = true;
+            this.device = device;
             if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - ConnectedToServer: " + device);
@@ -209,6 +210,16 @@ namespace javierfoe.AndroidBluetoothMultiplayer
             {
                 _clientAction();
                 _clientAction = null;
+            }
+        }
+
+        protected virtual void OnBluetoothConnectionToServerFailed(BluetoothDevice device)
+        {
+            IsBluetoothClientConnected = false;
+            this.device = null;
+            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            {
+                Debug.Log("Bluetooth Event - ConnectionToServerFailed: " + device);
             }
         }
 

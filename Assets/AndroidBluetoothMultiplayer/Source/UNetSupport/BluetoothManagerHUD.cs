@@ -45,8 +45,6 @@ namespace javierfoe.AndroidBluetoothMultiplayer
                 }
             }
 
-            StopButtons();
-
             GUILayout.EndArea();
         }
 
@@ -89,31 +87,33 @@ namespace javierfoe.AndroidBluetoothMultiplayer
             // display separately because this always confused people:
             //   Server: ...
             //   Client: ...
-            if (NetworkServer.active && NetworkClient.active)
+            bool bluetoothClient = manager.IsBluetoothClientConnected;
+            if (NetworkServer.active)
             {
-                GUILayout.Label($"<b>Host</b>: running via {Transport.activeTransport}");
+                //HOST
+                if (NetworkClient.active)
+                    GUILayout.Label($"<b>Host</b>: running via {Transport.activeTransport}");
+                //SERVER
+                else
+                    GUILayout.Label($"<b>Server</b>: running via {Transport.activeTransport}");
             }
-            // server only
-            else if (NetworkServer.active)
+            //CLIENT
+            else if (AndroidBluetoothMultiplayer.GetCurrentMode() == BluetoothMultiplayerMode.Client)
             {
-                GUILayout.Label($"<b>Server</b>: running via {Transport.activeTransport}");
+                string label = $"<b>Client</b>: connect{(bluetoothClient ? "ed" : "ing")} to {manager.ServerDevice} via {Transport.activeTransport}";
+                GUILayout.Label(label);
             }
-            // client only
-            else if (NetworkClient.isConnected)
-            {
-                GUILayout.Label($"<b>Client</b>: connected to {manager.ConnectedTo} via {Transport.activeTransport}");
-            }
+
+            StopButton(bluetoothClient);
         }
 
-        void StopButtons()
+        void StopButton(bool stop)
         {
-            BluetoothMultiplayerMode currentMode = AndroidBluetoothMultiplayer.GetCurrentMode();
-            if (currentMode != BluetoothMultiplayerMode.None)
+            string label = stop ? "Stop" : "Cancel";
+            //Stop button
+            if (GUILayout.Button(label, GUILayout.Height(100)))
             {
-                if (GUILayout.Button("Stop", GUILayout.Height(100)))
-                {
-                    manager.StopHost();
-                }
+                manager.StopHost();
             }
         }
     }
