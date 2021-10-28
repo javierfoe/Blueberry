@@ -11,22 +11,10 @@ public class AndroidDemo : MonoBehaviour
 
     [SerializeField]
     [Scene]
-    private string[] androidScenes = null;
-    [SerializeField]
-    [Scene]
-    private string[] pcScenes = null;
+    private string[] scenes = null;
 
     private void Awake()
     {
-        string[] scenes;
-        if(Application.platform == RuntimePlatform.Android)
-        {
-            scenes = androidScenes;
-        }
-        else
-        {
-            scenes = pcScenes;
-        }
         int length = scenes.Length;
         string[] split;
         Button button;

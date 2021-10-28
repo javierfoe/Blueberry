@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 namespace javierfoe.AndroidBluetoothMultiplayer.Examples.Tanks
 {
-    public class TankVariant : NetworkBehaviour
+    public class Tank : NetworkBehaviour
     {
         [Header("Components")]
         public NavMeshAgent agent;

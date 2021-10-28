@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace javierfoe.AndroidBluetoothMultiplayer.Examples.Pong
 {
-    public class Racket : NetworkBehaviour
+    public class Player : NetworkBehaviour
     {
         public float speed = 30;
         public Rigidbody2D rigidbody2d;

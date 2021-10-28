@@ -6,6 +6,51 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/AndroidBluetoothMultiplayer/Source/Mirror/Chat/Main.unity
+    path: Assets/AndroidBluetoothMultiplayer/Hub/Scenes/DemoHub.unity
+    guid: 005d3d51074238945b0f894bd1b2886e
+  - enabled: 1
+    path: Assets/AndroidBluetoothMultiplayer/Tap/Scenes/Tap.unity
+    guid: 15083c2b5ff76f947ada7f468a2e912b
+  - enabled: 1
+    path: Assets/AndroidBluetoothMultiplayer/Mirror/AdditiveScenes/AdditiveScenes.unity
+    guid: 53444b5b3570a304a85cbbfc7cf3ccc0
+  - enabled: 1
+    path: Assets/AndroidBluetoothMultiplayer/Mirror/Basic/Basic.unity
+    guid: 46a745940e65c07499da130531bc3940
+  - enabled: 1
+    path: Assets/AndroidBluetoothMultiplayer/Mirror/Benchmark/Benchmark.unity
+    guid: 6f56e0cb47f4b524b9281c409d77715c
+  - enabled: 1
+    path: Assets/AndroidBluetoothMultiplayer/Mirror/Chat/Chat.unity
     guid: 3940871f42ce210488df2b8ae7544f25
+  - enabled: 1
+    path: Assets/AndroidBluetoothMultiplayer/Mirror/MultipleAdditiveScenes/MultipleAdditiveScenes.unity
+    guid: d6a3db2d7f72bcd4485db92b09bf9423
+  - enabled: 1
+    path: Assets/AndroidBluetoothMultiplayer/Mirror/MultipleMatches/MultipleMatches.unity
+    guid: 2868f35fd367a8f4fb344caf62fef96e
+  - enabled: 1
+    path: Assets/AndroidBluetoothMultiplayer/Mirror/Pong/Pong.unity
+    guid: 59f661a1f1eaadb46880be5227581bd5
+  - enabled: 1
+    path: Assets/AndroidBluetoothMultiplayer/Mirror/RigidbodyPhysics/BounceScene.unity
+    guid: b4fe814f671c9e7488a800adf66b4737
+  - enabled: 1
+    path: Assets/AndroidBluetoothMultiplayer/Mirror/Room/Room.unity
+    guid: b8ed0a8b019b97844abdb35057fdcb56
+  - enabled: 1
+    path: Assets/AndroidBluetoothMultiplayer/Mirror/Tank/Tank.unity
+    guid: e0379a2c3bf1d0d4abe560b46b3e64a4
+  - enabled: 1
+    path: Assets/Mirror/Examples/AdditiveScenes/Scenes/SubScene.unity
+    guid: 7f4fd683fc6d866418c95f99977533a6
+  - enabled: 1
+    path: Assets/Mirror/Examples/MultipleAdditiveScenes/Scenes/Game.unity
+    guid: d45ed07e5475d4740812c97ae565255c
+  - enabled: 1
+    path: Assets/Mirror/Examples/Room/Scenes/OnlineScene.unity
+    guid: d7a6763559b31854586c9e49916273ef
+  - enabled: 1
+    path: Assets/Mirror/Examples/Room/Scenes/RoomScene.unity
+    guid: 48478f4d522f96945b8396f376299d3a
   m_configObjects: {}
