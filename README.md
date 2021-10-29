@@ -6,11 +6,11 @@ Then download the code of the given commit, and copy the asset folder to the Uni
 
 Mirror:
 
-https://github.com/vis2k/Mirror/releases/tag/v53.0.0
+https://github.com/vis2k/Mirror/releases/tag/v53.1.0
 
 Ignorance:
 
-https://github.com/SoftwareGuy/Ignorance/commit/d5b127cfa3ffff03fb5810696057c58f3da5a290
+https://github.com/SoftwareGuy/Ignorance
 
 This project uses this abandoned asset on the Unity Asset Store
 
