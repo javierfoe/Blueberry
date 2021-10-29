@@ -326,7 +326,7 @@ MonoBehaviour:
   runInBackground: 1
   autoStartServerBuild: 1
   serverTickRate: 30
-  offlineScene: Assets/AndroidBluetoothMultiplayer/Source/Mirror/Room/Room.unity
+  offlineScene: Assets/AndroidBluetoothMultiplayer/Mirror/Room/Room.unity
   onlineScene: Assets/Mirror/Examples/Room/Scenes/RoomScene.unity
   transport: {fileID: 2008127830}
   networkAddress: localhost
