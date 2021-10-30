@@ -2,6 +2,7 @@ using Mirror;
 using Mirror.Examples.Tanks;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace javierfoe.Blueberry.Examples.Tanks
 {
@@ -23,6 +24,24 @@ namespace javierfoe.Blueberry.Examples.Tanks
         [Header("Stats")]
         [SyncVar] public int health = 4;
 
+        private Button fire;
+
+        public override void OnStartClient()
+        {
+            base.OnStartClient();
+
+            fire = FindObjectOfType<Button>();
+            fire.interactable = true;
+            fire.onClick.AddListener(CmdFire);
+        }
+
+        public override void OnStopClient()
+        {
+            base.OnStopClient();
+            fire.interactable = false;
+            fire.onClick.RemoveAllListeners();
+        }
+
         void Update()
         {
             // always update health bar.
@@ -41,12 +60,6 @@ namespace javierfoe.Blueberry.Examples.Tanks
                 Vector3 forward = transform.TransformDirection(Vector3.forward);
                 agent.velocity = forward * Mathf.Max(vertical, 0) * agent.speed;
                 animator.SetBool("Moving", agent.velocity != Vector3.zero);
-
-                // shoot
-                if (Input.GetMouseButtonDown(0))
-                {
-                    CmdFire();
-                }
             }
         }
 
