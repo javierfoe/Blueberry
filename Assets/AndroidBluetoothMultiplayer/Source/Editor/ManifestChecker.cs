@@ -1,37 +1,28 @@
-#if UNITY_ANDROID
-
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
 
-namespace javierfoe.AndroidBluetoothMultiplayer.Editor {
+namespace javierfoe.AndroidBluetoothMultiplayer.Editor
+{
     [InitializeOnLoad]
-    internal class ManifestChecker {
-        static ManifestChecker() {
-#if UNITY_2017_2_OR_NEWER
+    internal class ManifestChecker
+    {
+        static ManifestChecker()
+        {
             EditorApplication.playModeStateChanged += GenerateManifestIfAbsent;
             GenerateManifestIfAbsent(PlayModeStateChange.EnteredEditMode);
-#else
-            EditorApplication.playmodeStateChanged += GenerateManifestIfAbsent;
-            GenerateManifestIfAbsent();
-#endif
         }
 
         [PostProcessScene]
-        private static void GenerateManifestIfAbsentPostprocessScene() {
-#if UNITY_2017_2_OR_NEWER
+        private static void GenerateManifestIfAbsentPostprocessScene()
+        {
             GenerateManifestIfAbsent(PlayModeStateChange.EnteredEditMode);
-#else
-            GenerateManifestIfAbsent();
-#endif
         }
 
-#if UNITY_2017_2_OR_NEWER
-        private static void GenerateManifestIfAbsent(PlayModeStateChange playModeStateChange) {
-#else
-        private static void GenerateManifestIfAbsent() {
-#endif
-            if (ManifestGenerator.IsManifestFileExists()) {
+        private static void GenerateManifestIfAbsent(PlayModeStateChange playModeStateChange)
+        {
+            if (ManifestGenerator.IsManifestFileExists())
+            {
                 ManifestGenerator.PatchManifest();
                 return;
             }
@@ -41,5 +32,3 @@ namespace javierfoe.AndroidBluetoothMultiplayer.Editor {
         }
     }
 }
-
-#endif
