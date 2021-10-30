@@ -1,5 +1,5 @@
 # Blueberry
-Asset that allows Multiplayer games through Bluetooth and using Mirror between Android devices.
+Asset that allows Multiplayer games to be played through Bluetooth and using Mirror between Android devices.
 
 First clone the repository, then download the following Mirror unity package, and unpack it in the project.
 Then download the code of the given commit, and copy the asset folder to the Unity Project folder manually.
