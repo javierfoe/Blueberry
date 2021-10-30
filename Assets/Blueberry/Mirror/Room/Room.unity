@@ -268,11 +268,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2008127832}
   - component: {fileID: 2008127831}
-  - component: {fileID: 2008127834}
   - component: {fileID: 2008127835}
   - component: {fileID: 2008127833}
   - component: {fileID: 2008127830}
-  - component: {fileID: 2008127836}
+  - component: {fileID: 2008127834}
   m_Layer: 0
   m_Name: NetworkRoomManager
   m_TagString: Untagged
@@ -326,7 +325,7 @@ MonoBehaviour:
   runInBackground: 1
   autoStartServerBuild: 1
   serverTickRate: 30
-  offlineScene: Assets/AndroidBluetoothMultiplayer/Mirror/Room/Room.unity
+  offlineScene: Assets/Blueberry/Mirror/Room/Room.unity
   onlineScene: Assets/Mirror/Examples/Room/Scenes/RoomScene.unity
   transport: {fileID: 2008127830}
   networkAddress: localhost
@@ -386,11 +385,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2008127829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5b5bc277148a7144b5936f9a7b5f82b, type: 3}
+  m_Script: {fileID: 11500000, guid: 44f7dbb624c411640a2aa44a36025871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  negativeThreshold: 0.4
-  positiveThreshold: 0.6
 --- !u!114 &2008127835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,17 +406,3 @@ MonoBehaviour:
     _defaultBluetoothDiscoverabilityInterval: 120
     _stopBluetoothServerOnListeningStopped: 1
     _logBluetoothEvents: 0
---- !u!114 &2008127836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2008127829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5b5bc277148a7144b5936f9a7b5f82b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  negativeThreshold: 0.4
-  positiveThreshold: 0.6

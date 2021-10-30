@@ -48,6 +48,7 @@ namespace javierfoe.Blueberry.Examples.MultipleAdditiveScenes
         public float moveSpeed = 8f;
         public float turnSensitivity = 5f;
         public float maxTurnSpeed = 150f;
+        public float turnThreshold = 0.5f;
 
         [Header("Diagnostics")]
         public float vertical;
@@ -58,10 +59,10 @@ namespace javierfoe.Blueberry.Examples.MultipleAdditiveScenes
             if (!isLocalPlayer || characterController == null || !characterController.enabled)
                 return;
 
-            vertical = TouchscreenMovement.Vertical;
+            vertical = Joystick.Vertical;
 
-            bool left = TouchscreenMovement.Left;
-            bool right = TouchscreenMovement.Right;
+            bool left = Joystick.Horizontal < -turnThreshold;
+            bool right = Joystick.Horizontal > turnThreshold;
 
             if (left)
                 turn = Mathf.MoveTowards(turn, -maxTurnSpeed, turnSensitivity);

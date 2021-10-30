@@ -1294,6 +1294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e242ee38a14076a39934172a19079b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   visRange: 10
 --- !u!1 &1172568541
 GameObject:
@@ -1805,8 +1807,8 @@ GameObject:
   - component: {fileID: 1661834282}
   - component: {fileID: 1661834280}
   - component: {fileID: 1661834283}
-  - component: {fileID: 1661834284}
   - component: {fileID: 1661834281}
+  - component: {fileID: 1661834284}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -1943,11 +1945,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1661834277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5b5bc277148a7144b5936f9a7b5f82b, type: 3}
+  m_Script: {fileID: 11500000, guid: 44f7dbb624c411640a2aa44a36025871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  negativeThreshold: 0.4
-  positiveThreshold: 0.6
 --- !u!1 &1727677796
 GameObject:
   m_ObjectHideFlags: 0

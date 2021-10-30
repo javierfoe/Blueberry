@@ -52,11 +52,11 @@ namespace javierfoe.Blueberry.Examples.Tanks
             if (isLocalPlayer)
             {
                 // rotate
-                float horizontal = TouchscreenMovement.Horizontal;
+                float horizontal = Joystick.Horizontal;
                 transform.Rotate(0, horizontal * rotationSpeed * Time.deltaTime, 0);
 
                 // move
-                float vertical = TouchscreenMovement.Vertical;
+                float vertical = Joystick.Vertical;
                 Vector3 forward = transform.TransformDirection(Vector3.forward);
                 agent.velocity = forward * Mathf.Max(vertical, 0) * agent.speed;
                 animator.SetBool("Moving", agent.velocity != Vector3.zero);

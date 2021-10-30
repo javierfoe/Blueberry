@@ -902,6 +902,7 @@ GameObject:
   - component: {fileID: 1886246554}
   - component: {fileID: 1886246551}
   - component: {fileID: 1886246553}
+  - component: {fileID: 1886246555}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -1015,3 +1016,15 @@ MonoBehaviour:
     _defaultBluetoothDiscoverabilityInterval: 120
     _stopBluetoothServerOnListeningStopped: 1
     _logBluetoothEvents: 0
+--- !u!114 &1886246555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886246549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44f7dbb624c411640a2aa44a36025871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
