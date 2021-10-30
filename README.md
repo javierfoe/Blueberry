@@ -6,7 +6,7 @@ Then download the code of the given commit, and copy the asset folder to the Uni
 
 Mirror:
 
-https://github.com/vis2k/Mirror/releases/tag/v53.1.0
+https://github.com/vis2k/Mirror/releases/tag/v53.4.0
 
 Ignorance:
 
