@@ -654,17 +654,17 @@ MonoBehaviour:
   buttonPrefab: {fileID: 1925573737037317055, guid: 044effd1a06ead742afce1d5cf6a9d97,
     type: 3}
   scenes:
-  - Assets/AndroidBluetoothMultiplayer/Mirror/AdditiveScenes/AdditiveScenes.unity
-  - Assets/AndroidBluetoothMultiplayer/Mirror/Basic/Basic.unity
-  - Assets/AndroidBluetoothMultiplayer/Mirror/Benchmark/Benchmark.unity
-  - Assets/AndroidBluetoothMultiplayer/Mirror/Chat/Chat.unity
-  - Assets/AndroidBluetoothMultiplayer/Mirror/MultipleAdditiveScenes/MultipleAdditiveScenes.unity
-  - Assets/AndroidBluetoothMultiplayer/Mirror/MultipleMatches/MultipleMatches.unity
-  - Assets/AndroidBluetoothMultiplayer/Mirror/Pong/Pong.unity
-  - Assets/AndroidBluetoothMultiplayer/Mirror/RigidbodyPhysics/RigidbodyPhysics.unity
-  - Assets/AndroidBluetoothMultiplayer/Mirror/Room/Room.unity
-  - Assets/AndroidBluetoothMultiplayer/Mirror/Tank/Tank.unity
-  - Assets/AndroidBluetoothMultiplayer/Tap/Scenes/Tap.unity
+  - Assets/Blueberry/Mirror/AdditiveScenes/AdditiveScenes.unity
+  - Assets/Blueberry/Mirror/Basic/Basic.unity
+  - Assets/Blueberry/Mirror/Benchmark/Benchmark.unity
+  - Assets/Blueberry/Mirror/Chat/Chat.unity
+  - Assets/Blueberry/Mirror/MultipleAdditiveScenes/MultipleAdditiveScenes.unity
+  - Assets/Blueberry/Mirror/MultipleMatches/MultipleMatches.unity
+  - Assets/Blueberry/Mirror/Pong/Pong.unity
+  - Assets/Blueberry/Mirror/RigidbodyPhysics/RigidbodyPhysics.unity
+  - Assets/Blueberry/Mirror/Room/Room.unity
+  - Assets/Blueberry/Mirror/Tank/Tank.unity
+  - Assets/Blueberry/Tap/Scenes/Tap.unity
 --- !u!1 &1954667941
 GameObject:
   m_ObjectHideFlags: 0
