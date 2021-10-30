@@ -1,5 +1,5 @@
-# Multiplayer-Bluetooth-Unity
-Made the Android Bluetooth Multiplayer asset work on Unity 2020.3.20f1 with Mirror and Ignorance.
+# Blueberry
+Asset that allows Multiplayer games through Bluetooth and using Mirror between Android devices.
 
 First clone the repository, then download the following Mirror unity package, and unpack it in the project.
 Then download the code of the given commit, and copy the asset folder to the Unity Project folder manually.
