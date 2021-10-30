@@ -49,10 +49,6 @@ namespace javierfoe.Blueberry
                     if (!mediatorClass.IsNull()) {
                         _plugin = mediatorClass.CallStatic<AndroidJavaObject>("getSingleton");
                         _isPluginAvailable = !_plugin.IsNull();
-                        Debug.LogError("Mediator found");
-                    } 
-                    else {
-                        Debug.LogError("Mediator class not found");
                     }
                 }
             } catch {
@@ -85,7 +81,6 @@ namespace javierfoe.Blueberry
         /// </summary>
         private static void UpdateInstance()
         {
-            Debug.Log("UpdateInstance");
             if (_instance != null)
                 return;
 
@@ -98,8 +93,6 @@ namespace javierfoe.Blueberry
 
             GameObject gameObject = new GameObject(kGameObjectName);
             _instance = gameObject.AddComponent<Blueberry>();
-
-            Debug.Log("Created instance");
 
             // Make it hidden and indestructible
             gameObject.hideFlags = HideFlags.NotEditable | HideFlags.HideInHierarchy;
