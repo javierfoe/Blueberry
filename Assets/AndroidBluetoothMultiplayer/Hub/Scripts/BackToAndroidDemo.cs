@@ -26,8 +26,10 @@ public class BackToAndroidDemo : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
         {
+            NetworkManager.singleton.offlineScene = null;
             NetworkManager.singleton.StopHost();
             Destroy(NetworkManager.singleton.gameObject);
+            NetworkManager.Shutdown();
             SceneManager.LoadScene(scene);
         }
     }
