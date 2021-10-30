@@ -1,4 +1,4 @@
-﻿namespace javierfoe.AndroidBluetoothMultiplayer {
+﻿namespace javierfoe.Blueberry {
     /// <summary>
     /// A helper class that simplifies working with Bluetooth device classes.
     /// </summary>

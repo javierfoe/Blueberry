@@ -1,19 +1,19 @@
 using UnityEngine;
 using Mirror;
 
-namespace javierfoe.AndroidBluetoothMultiplayer
+namespace javierfoe.Blueberry
 {
-    [RequireComponent(typeof(AndroidBluetoothNetworkManagerHelper))]
+    [RequireComponent(typeof(BlueberryNetworkManagerHelper))]
     public class BluetoothManagerHUD : MonoBehaviour
     {
-        AndroidBluetoothNetworkManagerHelper manager;
+        BlueberryNetworkManagerHelper manager;
 
         public int offsetX;
         public int offsetY;
 
         void Awake()
         {
-            manager = GetComponent<AndroidBluetoothNetworkManagerHelper>();
+            manager = GetComponent<BlueberryNetworkManagerHelper>();
         }
 
         void OnGUI()
@@ -22,7 +22,7 @@ namespace javierfoe.AndroidBluetoothMultiplayer
 
             GUILayout.BeginArea(new Rect(10 + offsetX, 40 + offsetY, 215, 9999));
 
-            BluetoothMultiplayerMode currentMode = AndroidBluetoothMultiplayer.GetCurrentMode();
+            BluetoothMultiplayerMode currentMode = Blueberry.GetCurrentMode();
             if (currentMode == BluetoothMultiplayerMode.None)
             {
                 StartButtons();
@@ -95,7 +95,7 @@ namespace javierfoe.AndroidBluetoothMultiplayer
                 StopButton(true);
             }
             //CLIENT
-            else if (AndroidBluetoothMultiplayer.GetCurrentMode() == BluetoothMultiplayerMode.Client)
+            else if (Blueberry.GetCurrentMode() == BluetoothMultiplayerMode.Client)
             {
                 bool bluetoothClient = manager.IsBluetoothClientConnected;
                 string label = $"<b>Client</b>: connect{(bluetoothClient ? "ed" : "ing")} to {manager.ServerDevice} via {Transport.activeTransport}";

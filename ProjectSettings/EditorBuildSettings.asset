@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/AndroidBluetoothMultiplayer/Mirror/Pong/Pong.unity
     guid: 59f661a1f1eaadb46880be5227581bd5
   - enabled: 1
-    path: Assets/AndroidBluetoothMultiplayer/Mirror/RigidbodyPhysics/BounceScene.unity
+    path: Assets/AndroidBluetoothMultiplayer/Mirror/RigidbodyPhysics/RigidbodyPhysics.unity
     guid: b4fe814f671c9e7488a800adf66b4737
   - enabled: 1
     path: Assets/AndroidBluetoothMultiplayer/Mirror/Room/Room.unity

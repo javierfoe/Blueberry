@@ -654,7 +654,6 @@ MonoBehaviour:
   buttonPrefab: {fileID: 1925573737037317055, guid: 044effd1a06ead742afce1d5cf6a9d97,
     type: 3}
   scenes:
-  - Assets/AndroidBluetoothMultiplayer/Tap/Scenes/Tap.unity
   - Assets/AndroidBluetoothMultiplayer/Mirror/AdditiveScenes/AdditiveScenes.unity
   - Assets/AndroidBluetoothMultiplayer/Mirror/Basic/Basic.unity
   - Assets/AndroidBluetoothMultiplayer/Mirror/Benchmark/Benchmark.unity
@@ -662,9 +661,10 @@ MonoBehaviour:
   - Assets/AndroidBluetoothMultiplayer/Mirror/MultipleAdditiveScenes/MultipleAdditiveScenes.unity
   - Assets/AndroidBluetoothMultiplayer/Mirror/MultipleMatches/MultipleMatches.unity
   - Assets/AndroidBluetoothMultiplayer/Mirror/Pong/Pong.unity
-  - Assets/AndroidBluetoothMultiplayer/Mirror/RigidbodyPhysics/BounceScene.unity
+  - Assets/AndroidBluetoothMultiplayer/Mirror/RigidbodyPhysics/RigidbodyPhysics.unity
   - Assets/AndroidBluetoothMultiplayer/Mirror/Room/Room.unity
   - Assets/AndroidBluetoothMultiplayer/Mirror/Tank/Tank.unity
+  - Assets/AndroidBluetoothMultiplayer/Tap/Scenes/Tap.unity
 --- !u!1 &1954667941
 GameObject:
   m_ObjectHideFlags: 0

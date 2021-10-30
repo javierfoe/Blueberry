@@ -1,51 +1,53 @@
 ﻿using UnityEngine;
 using Mirror;
-using javierfoe.AndroidBluetoothMultiplayer.Examples.UNet;
 using System.Collections.Generic;
 
-public class NetworkManagerDemo : NetworkManager
+namespace javierfoe.Blueberry.Examples.Tap
 {
-    public GameObject TapMarkerPrefab; // Reference to the tap effect
-
-    public override void OnStartServer()
+    public class NetworkManagerDemo : NetworkManager
     {
-        base.OnStartServer();
+        public GameObject TapMarkerPrefab; // Reference to the tap effect
 
-        // Register the handler for the CreateTapMarkerMessage that is sent from client to server
-        NetworkServer.RegisterHandler<CreateTapMarkerMessage>(OnServerCreateTapMarkerHandler);
-    }
-
-    public override void OnStartClient()
-    {
-        base.OnStartClient();
-
-        NetworkClient.RegisterHandler<CreateTapMarkerMessage>(OnClientCreateTapMarkerHandler);
-    }
-
-    // Called when client receives a CreateTapMarkerMessage
-    private void OnClientCreateTapMarkerHandler(CreateTapMarkerMessage createTapMarkerMessage)
-    {
-        Instantiate(TapMarkerPrefab, createTapMarkerMessage.Position, Quaternion.identity);
-    }
-
-    // Called when server receives a CreateTapMarkerMessage
-    private void OnServerCreateTapMarkerHandler(NetworkConnection connection, CreateTapMarkerMessage createTapMarkerMessage)
-    {
-
-        // Retransmit this message to all other clients except the one who initially sent it,
-        // since that client already creates a local tap marker on his own
-
-        NetworkConnection conn;
-        foreach (KeyValuePair<int, NetworkConnectionToClient> entry in NetworkServer.connections)
+        public override void OnStartServer()
         {
-            conn = entry.Value;
-            conn.Send(createTapMarkerMessage);
+            base.OnStartServer();
+
+            // Register the handler for the CreateTapMarkerMessage that is sent from client to server
+            NetworkServer.RegisterHandler<CreateTapMarkerMessage>(OnServerCreateTapMarkerHandler);
         }
 
-        NetworkConnection local = NetworkServer.localConnection;
-        if (local != null && connection != local)
+        public override void OnStartClient()
         {
-            local.Send(createTapMarkerMessage);
+            base.OnStartClient();
+
+            NetworkClient.RegisterHandler<CreateTapMarkerMessage>(OnClientCreateTapMarkerHandler);
+        }
+
+        // Called when client receives a CreateTapMarkerMessage
+        private void OnClientCreateTapMarkerHandler(CreateTapMarkerMessage createTapMarkerMessage)
+        {
+            Instantiate(TapMarkerPrefab, createTapMarkerMessage.Position, Quaternion.identity);
+        }
+
+        // Called when server receives a CreateTapMarkerMessage
+        private void OnServerCreateTapMarkerHandler(NetworkConnection connection, CreateTapMarkerMessage createTapMarkerMessage)
+        {
+
+            // Retransmit this message to all other clients except the one who initially sent it,
+            // since that client already creates a local tap marker on his own
+
+            NetworkConnection conn;
+            foreach (KeyValuePair<int, NetworkConnectionToClient> entry in NetworkServer.connections)
+            {
+                conn = entry.Value;
+                conn.Send(createTapMarkerMessage);
+            }
+
+            NetworkConnection local = NetworkServer.localConnection;
+            if (local != null && connection != local)
+            {
+                local.Send(createTapMarkerMessage);
+            }
         }
     }
 }

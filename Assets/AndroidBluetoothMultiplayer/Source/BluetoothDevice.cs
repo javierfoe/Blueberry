@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using javierfoe.AndroidBluetoothMultiplayer.Internal;
+using javierfoe.Blueberry.Internal;
 
-namespace javierfoe.AndroidBluetoothMultiplayer {
+namespace javierfoe.Blueberry {
     /// <summary>
     /// Represents a Bluetooth device.
     /// </summary>

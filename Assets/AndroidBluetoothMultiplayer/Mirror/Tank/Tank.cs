@@ -3,7 +3,7 @@ using Mirror.Examples.Tanks;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace javierfoe.AndroidBluetoothMultiplayer.Examples.Tanks
+namespace javierfoe.Blueberry.Examples.Tanks
 {
     public class Tank : NetworkBehaviour
     {

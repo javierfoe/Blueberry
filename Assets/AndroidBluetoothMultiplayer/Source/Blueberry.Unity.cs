@@ -1,11 +1,13 @@
 using UnityEngine;
-using javierfoe.AndroidBluetoothMultiplayer.Internal;
+using javierfoe.Blueberry.Internal;
 
-namespace javierfoe.AndroidBluetoothMultiplayer {
+namespace javierfoe.Blueberry
+{
     /// <summary>
     /// A core class that wraps Java methods of Android plugin.
     /// </summary>
-    public sealed partial class AndroidBluetoothMultiplayer : MonoBehaviour {
+    public sealed partial class Blueberry : MonoBehaviour
+    {
         /// <summary>
         /// Java Name of main plugin facade class.
         /// </summary>
@@ -14,7 +16,7 @@ namespace javierfoe.AndroidBluetoothMultiplayer {
         /// <summary>
         /// The name of the GameObject, used for receiving messages from Java side.
         /// </summary>
-        private static readonly string kGameObjectName = "_" + typeof(AndroidBluetoothMultiplayer).Name;
+        private static readonly string kGameObjectName = "_AndroidBluetoothMultiplayer";
 
         /// <summary>
         /// A reference to the Java BluetoothMediator object .
@@ -29,13 +31,14 @@ namespace javierfoe.AndroidBluetoothMultiplayer {
         /// <summary>
         /// A reference to singleton instance.
         /// </summary>
-        private static AndroidBluetoothMultiplayer _instance;
+        private static Blueberry _instance;
 
         /// <summary>
-        /// Initializes <see cref="AndroidBluetoothMultiplayer"/> class.
+        /// Initializes <see cref="Blueberry"/> class.
         /// Retrieves a pointer to the Java plugin object.
         /// </summary>
-        static AndroidBluetoothMultiplayer() {
+        static Blueberry()
+        {
             _plugin = null;
             _isPluginAvailable = false;
 
@@ -46,10 +49,14 @@ namespace javierfoe.AndroidBluetoothMultiplayer {
                     if (!mediatorClass.IsNull()) {
                         _plugin = mediatorClass.CallStatic<AndroidJavaObject>("getSingleton");
                         _isPluginAvailable = !_plugin.IsNull();
+                        Debug.LogError("Mediator found");
+                    } 
+                    else {
+                        Debug.LogError("Mediator class not found");
                     }
                 }
             } catch {
-                Debug.LogError("AndroidBluetoothMultiplayer initialization failed. Probably .aar not present?");
+                Debug.LogError("Blueberry initialization failed. Probably .aar not present?");
                 throw;
             }
 #endif
@@ -59,10 +66,14 @@ namespace javierfoe.AndroidBluetoothMultiplayer {
         /// Initalizes the singleton instance at the application start.
         /// </summary>
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void TryUpdateInstance() {
-            try {
+        private static void TryUpdateInstance()
+        {
+            try
+            {
                 UpdateInstance();
-            } catch {
+            }
+            catch
+            {
                 // Happens when this static constructor is called from a GameObject being created.
                 // Just ignoring, as this is intended and can't be avoided.
             }
@@ -72,27 +83,33 @@ namespace javierfoe.AndroidBluetoothMultiplayer {
         /// Tries to find an existing instance in the scene,
         /// and creates one if there were none.
         /// </summary>
-        private static void UpdateInstance() {
+        private static void UpdateInstance()
+        {
+            Debug.Log("UpdateInstance");
             if (_instance != null)
                 return;
 
             // Trying to find an existing instance in the scene
-            _instance = (AndroidBluetoothMultiplayer) FindObjectOfType(typeof(AndroidBluetoothMultiplayer));
+            _instance = (Blueberry)FindObjectOfType(typeof(Blueberry));
 
             // Creating a new instance in case there are no instances present in the scene
             if (_instance != null)
                 return;
 
             GameObject gameObject = new GameObject(kGameObjectName);
-            _instance = gameObject.AddComponent<AndroidBluetoothMultiplayer>();
+            _instance = gameObject.AddComponent<Blueberry>();
+
+            Debug.Log("Created instance");
 
             // Make it hidden and indestructible
             gameObject.hideFlags = HideFlags.NotEditable | HideFlags.HideInHierarchy;
         }
 
-        private void Awake() {
+        private void Awake()
+        {
             // Kill other instances
-            if (FindObjectsOfType(typeof(AndroidBluetoothMultiplayer)).Length > 1) {
+            if (FindObjectsOfType(typeof(Blueberry)).Length > 1)
+            {
                 Debug.LogError("Multiple " + kGameObjectName + " instances found, destroying...");
                 DestroyImmediate(gameObject);
                 return;

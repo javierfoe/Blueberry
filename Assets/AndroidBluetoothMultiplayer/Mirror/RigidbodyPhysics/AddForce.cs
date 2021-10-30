@@ -1,7 +1,7 @@
 using Mirror;
 using UnityEngine;
 
-namespace javierfoe.AndroidBluetoothMultiplayer.Examples.RigidbodyPhysics
+namespace javierfoe.Blueberry.Examples.RigidbodyPhysics
 {
     public class AddForce : NetworkBehaviour
     {

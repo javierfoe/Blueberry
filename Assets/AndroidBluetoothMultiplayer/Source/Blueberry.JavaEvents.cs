@@ -1,7 +1,7 @@
 using System;
 
-namespace javierfoe.AndroidBluetoothMultiplayer {
-    public sealed partial class AndroidBluetoothMultiplayer {
+namespace javierfoe.Blueberry {
+    public sealed partial class Blueberry {
         #region Events
 
         /// <summary>

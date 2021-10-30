@@ -1,7 +1,7 @@
 using Mirror;
 using UnityEngine;
 
-namespace javierfoe.AndroidBluetoothMultiplayer.Examples
+namespace javierfoe.Blueberry.Examples
 {
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(CharacterController))]

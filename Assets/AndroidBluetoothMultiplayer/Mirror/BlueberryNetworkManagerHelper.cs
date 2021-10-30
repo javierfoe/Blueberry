@@ -2,7 +2,7 @@
 using UnityEngine;
 using Mirror;
 
-namespace javierfoe.AndroidBluetoothMultiplayer
+namespace javierfoe.Blueberry
 {
     /// <summary>
     /// A helper class that works in conjunction with <see cref="NetworkManager"/>.
@@ -14,8 +14,7 @@ namespace javierfoe.AndroidBluetoothMultiplayer
     /// instead of using NetworkManager directly to start your client/server/host.
     /// </example>
     [RequireComponent(typeof(NetworkManager))]
-    [AddComponentMenu("Network/Android Bluetooth Multiplayer/AndroidBluetoothNetworkManagerHelper")]
-    public class AndroidBluetoothNetworkManagerHelper : MonoBehaviour
+    public class BlueberryNetworkManagerHelper : MonoBehaviour
     {
 
         [SerializeField]
@@ -25,7 +24,7 @@ namespace javierfoe.AndroidBluetoothMultiplayer
         private IgnoranceTransport.Ignorance _transportLayer;
 
         [SerializeField]
-        protected BluetoothNetworkManagerSettings _bluetoothNetworkManagerSettings = new BluetoothNetworkManagerSettings();
+        protected BlueberrySettings _bluetoothNetworkManagerSettings = new BlueberrySettings();
 
         private bool _isInitialized;
         private BluetoothMultiplayerMode _desiredMode = BluetoothMultiplayerMode.None;
@@ -50,22 +49,22 @@ namespace javierfoe.AndroidBluetoothMultiplayer
             _transportLayer = GetComponent<IgnoranceTransport.Ignorance>();
 
             // Setting the UUID. Must be unique for every application
-            _isInitialized = AndroidBluetoothMultiplayer.Initialize(_bluetoothNetworkManagerSettings.Uuid);
+            _isInitialized = Blueberry.Initialize(_bluetoothNetworkManagerSettings.Uuid);
 
             // Registering the event listeners
-            AndroidBluetoothMultiplayer.ListeningStarted += OnBluetoothListeningStarted;
-            AndroidBluetoothMultiplayer.ListeningStopped += OnBluetoothListeningStopped;
-            AndroidBluetoothMultiplayer.AdapterEnabled += OnBluetoothAdapterEnabled;
-            AndroidBluetoothMultiplayer.AdapterEnableFailed += OnBluetoothAdapterEnableFailed;
-            AndroidBluetoothMultiplayer.AdapterDisabled += OnBluetoothAdapterDisabled;
-            AndroidBluetoothMultiplayer.DiscoverabilityEnabled += OnBluetoothDiscoverabilityEnabled;
-            AndroidBluetoothMultiplayer.DiscoverabilityEnableFailed += OnBluetoothDiscoverabilityEnableFailed;
-            AndroidBluetoothMultiplayer.ConnectedToServer += OnBluetoothClientConnected;
-            AndroidBluetoothMultiplayer.ConnectionToServerFailed += OnBluetoothConnectionToServerFailed;
-            AndroidBluetoothMultiplayer.DisconnectedFromServer += OnBluetoothClientDisconnected;
-            AndroidBluetoothMultiplayer.ClientConnected += OnBluetoothServerConnected;
-            AndroidBluetoothMultiplayer.ClientDisconnected += OnBluetoothServerDisconnected;
-            AndroidBluetoothMultiplayer.DevicePicked += OnBluetoothDevicePicked;
+            Blueberry.ListeningStarted += OnBluetoothListeningStarted;
+            Blueberry.ListeningStopped += OnBluetoothListeningStopped;
+            Blueberry.AdapterEnabled += OnBluetoothAdapterEnabled;
+            Blueberry.AdapterEnableFailed += OnBluetoothAdapterEnableFailed;
+            Blueberry.AdapterDisabled += OnBluetoothAdapterDisabled;
+            Blueberry.DiscoverabilityEnabled += OnBluetoothDiscoverabilityEnabled;
+            Blueberry.DiscoverabilityEnableFailed += OnBluetoothDiscoverabilityEnableFailed;
+            Blueberry.ConnectedToServer += OnBluetoothClientConnected;
+            Blueberry.ConnectionToServerFailed += OnBluetoothConnectionToServerFailed;
+            Blueberry.DisconnectedFromServer += OnBluetoothClientDisconnected;
+            Blueberry.ClientConnected += OnBluetoothServerConnected;
+            Blueberry.ClientDisconnected += OnBluetoothServerDisconnected;
+            Blueberry.DevicePicked += OnBluetoothDevicePicked;
         }
 
         protected virtual void OnDisable()
@@ -73,22 +72,22 @@ namespace javierfoe.AndroidBluetoothMultiplayer
 
 #if UNITY_ANDROID
             // Stopping all Bluetooth connectivity on Unity networking disconnect event
-            AndroidBluetoothMultiplayer.Stop();
+            Blueberry.Stop();
 #endif
             // Unregistering the event listeners
-            AndroidBluetoothMultiplayer.ListeningStarted -= OnBluetoothListeningStarted;
-            AndroidBluetoothMultiplayer.ListeningStopped -= OnBluetoothListeningStopped;
-            AndroidBluetoothMultiplayer.AdapterEnabled -= OnBluetoothAdapterEnabled;
-            AndroidBluetoothMultiplayer.AdapterEnableFailed -= OnBluetoothAdapterEnableFailed;
-            AndroidBluetoothMultiplayer.AdapterDisabled -= OnBluetoothAdapterDisabled;
-            AndroidBluetoothMultiplayer.DiscoverabilityEnabled -= OnBluetoothDiscoverabilityEnabled;
-            AndroidBluetoothMultiplayer.DiscoverabilityEnableFailed -= OnBluetoothDiscoverabilityEnableFailed;
-            AndroidBluetoothMultiplayer.ConnectedToServer -= OnBluetoothClientConnected;
-            AndroidBluetoothMultiplayer.ConnectionToServerFailed -= OnBluetoothConnectionToServerFailed;
-            AndroidBluetoothMultiplayer.DisconnectedFromServer -= OnBluetoothClientDisconnected;
-            AndroidBluetoothMultiplayer.ClientConnected -= OnBluetoothServerConnected;
-            AndroidBluetoothMultiplayer.ClientDisconnected -= OnBluetoothServerDisconnected;
-            AndroidBluetoothMultiplayer.DevicePicked -= OnBluetoothDevicePicked;
+            Blueberry.ListeningStarted -= OnBluetoothListeningStarted;
+            Blueberry.ListeningStopped -= OnBluetoothListeningStopped;
+            Blueberry.AdapterEnabled -= OnBluetoothAdapterEnabled;
+            Blueberry.AdapterEnableFailed -= OnBluetoothAdapterEnableFailed;
+            Blueberry.AdapterDisabled -= OnBluetoothAdapterDisabled;
+            Blueberry.DiscoverabilityEnabled -= OnBluetoothDiscoverabilityEnabled;
+            Blueberry.DiscoverabilityEnableFailed -= OnBluetoothDiscoverabilityEnableFailed;
+            Blueberry.ConnectedToServer -= OnBluetoothClientConnected;
+            Blueberry.ConnectionToServerFailed -= OnBluetoothConnectionToServerFailed;
+            Blueberry.DisconnectedFromServer -= OnBluetoothClientDisconnected;
+            Blueberry.ClientConnected -= OnBluetoothServerConnected;
+            Blueberry.ClientDisconnected -= OnBluetoothServerDisconnected;
+            Blueberry.DevicePicked -= OnBluetoothDevicePicked;
         }
         #region NetworkManager methods
 
@@ -113,8 +112,8 @@ namespace javierfoe.AndroidBluetoothMultiplayer
         public void StopHost()
         {
             _networkManager.StopHost();
-            AndroidBluetoothMultiplayer.StopDiscovery();
-            AndroidBluetoothMultiplayer.Stop();
+            Blueberry.StopDiscovery();
+            Blueberry.Stop();
         }
 
         #endregion
@@ -145,7 +144,7 @@ namespace javierfoe.AndroidBluetoothMultiplayer
 
             if (_bluetoothNetworkManagerSettings.StopBluetoothServerOnListeningStopped)
             {
-                AndroidBluetoothMultiplayer.Stop();
+                Blueberry.Stop();
             }
         }
 
@@ -158,7 +157,7 @@ namespace javierfoe.AndroidBluetoothMultiplayer
             }
 
             // Trying to connect to the device picked by user
-            AndroidBluetoothMultiplayer.Connect(device.Address, (ushort)_transportLayer.port);
+            Blueberry.Connect(device.Address, (ushort)_transportLayer.port);
         }
 
         //Called on the server when a client disconnects
@@ -257,12 +256,12 @@ namespace javierfoe.AndroidBluetoothMultiplayer
             {
                 case BluetoothMultiplayerMode.Server:
                     StopAll();
-                    AndroidBluetoothMultiplayer.StartServer((ushort)_transportLayer.port);
+                    Blueberry.StartServer((ushort)_transportLayer.port);
                     break;
                 case BluetoothMultiplayerMode.Client:
                     StopAll();
                     // Open device picker dialog
-                    AndroidBluetoothMultiplayer.ShowDeviceList();
+                    Blueberry.ShowDeviceList();
                     break;
             }
 
@@ -292,17 +291,17 @@ namespace javierfoe.AndroidBluetoothMultiplayer
             _clientAction = onReadyAction;
 
             // If Bluetooth is enabled, immediately open the device picker
-            if (AndroidBluetoothMultiplayer.GetIsBluetoothEnabled())
+            if (Blueberry.GetIsBluetoothEnabled())
             {
                 StopAll();
                 // Open device picker dialog
-                AndroidBluetoothMultiplayer.ShowDeviceList();
+                Blueberry.ShowDeviceList();
             }
             else
             {
                 // Otherwise, we have to enable Bluetooth first and wait for callback
                 _desiredMode = BluetoothMultiplayerMode.Client;
-                AndroidBluetoothMultiplayer.RequestEnableBluetooth();
+                Blueberry.RequestEnableBluetooth();
             }
         }
 
@@ -311,24 +310,24 @@ namespace javierfoe.AndroidBluetoothMultiplayer
             _hostAction = onReadyAction;
 
             // If Bluetooth is enabled, immediately start the Bluetooth server
-            if (AndroidBluetoothMultiplayer.GetIsBluetoothEnabled())
+            if (Blueberry.GetIsBluetoothEnabled())
             {
-                AndroidBluetoothMultiplayer.RequestEnableDiscoverability(_bluetoothNetworkManagerSettings.DefaultBluetoothDiscoverabilityInterval);
+                Blueberry.RequestEnableDiscoverability(_bluetoothNetworkManagerSettings.DefaultBluetoothDiscoverabilityInterval);
                 StopAll(); // Just to be sure
-                AndroidBluetoothMultiplayer.StartServer((ushort)_transportLayer.port);
+                Blueberry.StartServer((ushort)_transportLayer.port);
             }
             else
             {
                 // Otherwise, we have to enable Bluetooth first and wait for callback
                 _desiredMode = BluetoothMultiplayerMode.Server;
-                AndroidBluetoothMultiplayer.RequestEnableDiscoverability(_bluetoothNetworkManagerSettings.DefaultBluetoothDiscoverabilityInterval);
+                Blueberry.RequestEnableDiscoverability(_bluetoothNetworkManagerSettings.DefaultBluetoothDiscoverabilityInterval);
             }
         }
 
         private void StopAll()
         {
             _networkManager.StopHost();
-            AndroidBluetoothMultiplayer.Stop();
+            Blueberry.Stop();
         }
 
         private void ClearState()

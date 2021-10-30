@@ -1,11 +1,11 @@
 using UnityEngine;
-using javierfoe.AndroidBluetoothMultiplayer.Internal;
+using javierfoe.Blueberry.Internal;
 
-namespace javierfoe.AndroidBluetoothMultiplayer {
+namespace javierfoe.Blueberry {
     /// <summary>
     /// A core class that wraps Java methods of Android plugin.
     /// </summary>
-    public sealed partial class AndroidBluetoothMultiplayer {
+    public sealed partial class Blueberry {
         #region Methods
 
         /// <summary>

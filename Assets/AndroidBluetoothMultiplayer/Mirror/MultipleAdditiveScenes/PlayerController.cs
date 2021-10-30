@@ -2,7 +2,7 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace javierfoe.AndroidBluetoothMultiplayer.Examples.MultipleAdditiveScenes
+namespace javierfoe.Blueberry.Examples.MultipleAdditiveScenes
 {
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(CharacterController))]

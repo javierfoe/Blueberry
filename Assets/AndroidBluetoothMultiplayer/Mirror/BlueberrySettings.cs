@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class BluetoothNetworkManagerSettings
+public class BlueberrySettings
 {
     [Tooltip("Bluetooth service application identifier, must be unique for every application. " +
              "If you have multiple scenes with different NetworkManager's in your project, " +

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace javierfoe.AndroidBluetoothMultiplayer.Internal {
+namespace javierfoe.Blueberry.Internal {
     /// <summary>
     /// A collection of helpful extension methods.
     /// </summary>

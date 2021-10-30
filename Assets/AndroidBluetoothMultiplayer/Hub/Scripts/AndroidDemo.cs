@@ -4,34 +4,36 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class AndroidDemo : MonoBehaviour
+namespace javierfoe.Blueberry.Hub
 {
-    [SerializeField]
-    private Button buttonPrefab;
-
-    [SerializeField]
-    [Scene]
-    private string[] scenes = null;
-
-    private void Awake()
+    public class AndroidDemo : MonoBehaviour
     {
-        int length = scenes.Length;
-        string[] split;
-        Button button;
-        for (int i = 0; i < length; i++)
+        [SerializeField]
+        private Button buttonPrefab;
+
+        [SerializeField]
+        [Scene]
+        private string[] scenes = null;
+
+        private void Awake()
         {
-            string scene = scenes[i];
-            split = scene.Split('/', '.');
-            string sceneName = split[split.Length-2];
-            button = Instantiate(buttonPrefab, transform.GetChild(0));
-            button.GetComponentInChildren<TMP_Text>().text = sceneName;
-            button.onClick.AddListener(() => LoadScene(scene));
+            int length = scenes.Length;
+            string[] split;
+            Button button;
+            for (int i = 0; i < length; i++)
+            {
+                string scene = scenes[i];
+                split = scene.Split('/', '.');
+                string sceneName = split[split.Length - 2];
+                button = Instantiate(buttonPrefab, transform.GetChild(0));
+                button.GetComponentInChildren<TMP_Text>().text = sceneName;
+                button.onClick.AddListener(() => LoadScene(scene));
+            }
+        }
+
+        private void LoadScene(string scene)
+        {
+            SceneManager.LoadScene(scene);
         }
     }
-
-    private void LoadScene(string scene)
-    {
-        SceneManager.LoadScene(scene);
-    }
-
 }

@@ -1,7 +1,7 @@
 using Mirror;
 using UnityEngine;
 
-namespace javierfoe.AndroidBluetoothMultiplayer.Examples.Pong
+namespace javierfoe.Blueberry.Examples.Pong
 {
     public class Ball : NetworkBehaviour
     {

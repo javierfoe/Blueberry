@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace javierfoe.AndroidBluetoothMultiplayer.Examples {
+namespace javierfoe.Blueberry.Examples.Tap {
     public class TapMarker : MonoBehaviour {
         private const float kTimeToLive = 0.3f;
         private const float kScaleFactor = 50f;

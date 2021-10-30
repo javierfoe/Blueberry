@@ -2,35 +2,38 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BackToAndroidDemo : MonoBehaviour
+namespace javierfoe.Blueberry.Hub
 {
-    private static BackToAndroidDemo instance;
-    private static string scene;
-
-    // Start is called before the first frame update
-    void Start()
+    public class BackToAndroidDemo : MonoBehaviour
     {
-        if (instance != null && instance != this)
+        private static BackToAndroidDemo instance;
+        private static string scene;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            Destroy(gameObject);
-            return;
+            if (instance != null && instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            DontDestroyOnLoad(gameObject);
+            scene = SceneManager.GetActiveScene().name;
+            instance = this;
         }
 
-        DontDestroyOnLoad(gameObject);
-        scene = SceneManager.GetActiveScene().name;
-        instance = this;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Escape))
+        // Update is called once per frame
+        void Update()
         {
-            NetworkManager.singleton.offlineScene = null;
-            NetworkManager.singleton.StopHost();
-            Destroy(NetworkManager.singleton.gameObject);
-            NetworkManager.Shutdown();
-            SceneManager.LoadScene(scene);
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                NetworkManager.singleton.offlineScene = null;
+                NetworkManager.singleton.StopHost();
+                Destroy(NetworkManager.singleton.gameObject);
+                NetworkManager.Shutdown();
+                SceneManager.LoadScene(scene);
+            }
         }
     }
 }

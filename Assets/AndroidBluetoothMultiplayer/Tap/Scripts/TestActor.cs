@@ -1,7 +1,7 @@
 using UnityEngine;
 using Mirror;
 
-namespace javierfoe.AndroidBluetoothMultiplayer.Examples.UNet
+namespace javierfoe.Blueberry.Examples.Tap
 {
     /// <summary>
     /// A very simple object. Moves to the position of the touch with interpolation.

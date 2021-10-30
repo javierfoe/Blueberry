@@ -1,4 +1,4 @@
-namespace javierfoe.AndroidBluetoothMultiplayer {
+namespace javierfoe.Blueberry {
     /// <summary>
     /// Represents the state in which the plugin operates.
     /// </summary>
