@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace javierfoe.Blueberry
 {
@@ -7,40 +8,44 @@ namespace javierfoe.Blueberry
         public static float Horizontal { get; private set; }
         public static float Vertical { get; private set; }
 
-        private bool touchStart;
         private Vector3 pointA, pointB;
 
         // Update is called once per frame
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            int touchCount = Input.touchCount;
+            if(touchCount > 0)
             {
-                pointA = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-            }
-            if (Input.GetMouseButton(0))
-            {
-                touchStart = true;
-                pointB = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-            }
-            else
-            {
-                touchStart = false;
-            }
+                Touch touch;
+                int fingerId = -1;
+                for(int i = 0; i < touchCount; i++)
+                {
+                    touch = Input.GetTouch(i);
+                    if (fingerId > -1 && fingerId != touch.fingerId ||EventSystem.current.IsPointerOverGameObject(touch.fingerId)) continue;
+                    fingerId = touch.fingerId;
+                    switch (touch.phase)
+                    {
+                        case TouchPhase.Began:
+                            pointA = touch.position;
+                            break;
+                        case TouchPhase.Moved:
+                            pointB = touch.position;
+                            Vector3 direction = pointB - pointA;
+                            if (direction.sqrMagnitude > 1)
+                            {
+                                direction = direction.normalized;
+                            }
 
-            if (touchStart)
-            {
-                Vector3 direction = (pointB-pointA).normalized;
-
-                Horizontal = direction.x;
-                Vertical = direction.y;
+                            Horizontal = direction.x;
+                            Vertical = direction.y;
+                            break;
+                        case TouchPhase.Ended:
+                            Horizontal = 0;
+                            Vertical = 0;
+                            break;
+                    }
+                }
             }
-            else
-            {
-                Horizontal = 0;
-                Vertical = 0;
-            }
-
-            Debug.Log($"Horizontal: {Horizontal} Vertical:{Vertical}");
         }
     }
 }
