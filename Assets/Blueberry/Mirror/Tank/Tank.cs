@@ -26,18 +26,18 @@ namespace javierfoe.Blueberry.Examples.Tanks
 
         private Button fire;
 
-        public override void OnStartClient()
+        public override void OnStartLocalPlayer()
         {
-            base.OnStartClient();
+            base.OnStartLocalPlayer();
 
             fire = FindObjectOfType<Button>();
             fire.interactable = true;
             fire.onClick.AddListener(CmdFire);
         }
 
-        public override void OnStopClient()
+        public override void OnStopAuthority()
         {
-            base.OnStopClient();
+            base.OnStopAuthority();
             fire.interactable = false;
             fire.onClick.RemoveAllListeners();
         }

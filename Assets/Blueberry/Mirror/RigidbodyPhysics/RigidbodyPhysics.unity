@@ -1033,7 +1033,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press space on server to add force to rigidbodies
+  m_Text: Touch the screen on server to add force to rigidbodies
 --- !u!222 &1592570047
 CanvasRenderer:
   m_ObjectHideFlags: 0
