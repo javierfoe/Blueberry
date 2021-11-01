@@ -21,7 +21,7 @@ namespace javierfoe.Blueberry
                 for(int i = 0; i < touchCount; i++)
                 {
                     touch = Input.GetTouch(i);
-                    if (fingerId > -1 && fingerId != touch.fingerId ||EventSystem.current.IsPointerOverGameObject(touch.fingerId)) continue;
+                    if (fingerId > -1 && fingerId != touch.fingerId || IsOverGameObject(touch.fingerId)) continue;
                     fingerId = touch.fingerId;
                     switch (touch.phase)
                     {
@@ -46,6 +46,11 @@ namespace javierfoe.Blueberry
                     }
                 }
             }
+        }
+
+        private bool IsOverGameObject(int fingerId)
+        {
+            return EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(fingerId);
         }
     }
 }
