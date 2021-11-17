@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Blueberry/Tap/Scenes/Tap.unity
     guid: 15083c2b5ff76f947ada7f468a2e912b
   - enabled: 1
+    path: Assets/Blueberry/Mirror/AdditiveLevels/AdditiveLevels.unity
+    guid: 3b77daa4bb0e23845a063af120eb2fb5
+  - enabled: 1
     path: Assets/Blueberry/Mirror/AdditiveScenes/AdditiveScenes.unity
     guid: 53444b5b3570a304a85cbbfc7cf3ccc0
   - enabled: 1
@@ -41,6 +44,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Blueberry/Mirror/Tank/Tank.unity
     guid: e0379a2c3bf1d0d4abe560b46b3e64a4
+  - enabled: 1
+    path: Assets/Mirror/Examples/AdditiveLevels/Scenes/Online.unity
+    guid: 3c63960543989ea41ba3d3fb04d6dcf3
+  - enabled: 1
+    path: Assets/Mirror/Examples/AdditiveLevels/Scenes/SubLevel1.unity
+    guid: 91c0fa5f4542be14dbad5c838292056b
+  - enabled: 1
+    path: Assets/Mirror/Examples/AdditiveLevels/Scenes/SubLevel2.unity
+    guid: e8e2dc8c3ef824b468c6f6e1980a4b27
   - enabled: 1
     path: Assets/Mirror/Examples/AdditiveScenes/Scenes/SubScene.unity
     guid: 7f4fd683fc6d866418c95f99977533a6

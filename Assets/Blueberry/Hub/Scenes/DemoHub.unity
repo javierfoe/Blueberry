@@ -615,7 +615,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -654,6 +654,7 @@ MonoBehaviour:
   buttonPrefab: {fileID: 1925573737037317055, guid: 044effd1a06ead742afce1d5cf6a9d97,
     type: 3}
   scenes:
+  - Assets/Blueberry/Mirror/AdditiveLevels/AdditiveLevels.unity
   - Assets/Blueberry/Mirror/AdditiveScenes/AdditiveScenes.unity
   - Assets/Blueberry/Mirror/Basic/Basic.unity
   - Assets/Blueberry/Mirror/Benchmark/Benchmark.unity

@@ -11,15 +11,15 @@ namespace javierfoe.Blueberry.Examples
     {
         public CharacterController characterController;
 
-        void OnValidate()
-        {
-            if (characterController == null)
-                characterController = GetComponent<CharacterController>();
+        [Header("Movement Settings")]
+        public float moveSpeed = 8f;
+        public float turnSensitivity = 5f;
+        public float maxTurnSpeed = 30f;
+        public float turnThreshold = 0.5f;
 
-            characterController.enabled = false;
-            GetComponent<Rigidbody>().isKinematic = true;
-            GetComponent<NetworkTransform>().clientAuthority = true;
-        }
+        [Header("Diagnostics")]
+        public float vertical;
+        public float turn;
 
         public override void OnStartLocalPlayer()
         {
@@ -31,7 +31,7 @@ namespace javierfoe.Blueberry.Examples
             characterController.enabled = true;
         }
 
-        void OnDisable()
+        protected virtual void OnDisable()
         {
             if (isLocalPlayer && Camera.main != null)
             {
@@ -42,15 +42,15 @@ namespace javierfoe.Blueberry.Examples
             }
         }
 
-        [Header("Movement Settings")]
-        public float moveSpeed = 8f;
-        public float turnSensitivity = 5f;
-        public float maxTurnSpeed = 30f;
-        public float turnThreshold = 0.5f;
+        void OnValidate()
+        {
+            if (characterController == null)
+                characterController = GetComponent<CharacterController>();
 
-        [Header("Diagnostics")]
-        public float vertical;
-        public float turn;
+            characterController.enabled = false;
+            GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<NetworkTransform>().clientAuthority = true;
+        }
 
         void Update()
         {
