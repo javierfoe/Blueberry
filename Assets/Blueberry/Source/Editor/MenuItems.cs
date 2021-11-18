@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace javierfoe.AndroidBluetoothMultiplayer.Editor {
     internal class MenuItems : EditorWindow {
-        private const string kMenuRoot = "Android Bluetooth Multiplayer/";
+        private const string kMenuRoot = "Blueberry/";
 
         [MenuItem(kMenuRoot + "Generate New AndroidManifest.xml")]
         public static void GenerateManifest() {
