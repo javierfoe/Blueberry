@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Blueberry/Hub/Scenes/DemoHub.unity
     guid: 005d3d51074238945b0f894bd1b2886e
   - enabled: 1
-    path: Assets/Blueberry/Tap/Scenes/Tap.unity
-    guid: 15083c2b5ff76f947ada7f468a2e912b
-  - enabled: 1
     path: Assets/Blueberry/Mirror/AdditiveLevels/AdditiveLevels.unity
     guid: 3b77daa4bb0e23845a063af120eb2fb5
   - enabled: 1

@@ -665,7 +665,6 @@ MonoBehaviour:
   - Assets/Blueberry/Mirror/RigidbodyPhysics/RigidbodyPhysics.unity
   - Assets/Blueberry/Mirror/Room/Room.unity
   - Assets/Blueberry/Mirror/Tank/Tank.unity
-  - Assets/Blueberry/Tap/Scenes/Tap.unity
 --- !u!1 &1954667941
 GameObject:
   m_ObjectHideFlags: 0
