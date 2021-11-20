@@ -35,9 +35,8 @@ namespace javierfoe.Blueberry.Examples.Tanks
             fire.onClick.AddListener(CmdFire);
         }
 
-        public override void OnStopAuthority()
+        private void OnDestroy()
         {
-            base.OnStopAuthority();
             fire.interactable = false;
             fire.onClick.RemoveAllListeners();
         }
