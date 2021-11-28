@@ -37,6 +37,8 @@ namespace javierfoe.Blueberry.Examples.Tanks
 
         private void OnDestroy()
         {
+            if (fire == null) return;
+            
             fire.interactable = false;
             fire.onClick.RemoveAllListeners();
         }
