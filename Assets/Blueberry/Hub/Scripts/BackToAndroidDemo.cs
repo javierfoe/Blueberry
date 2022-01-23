@@ -31,7 +31,7 @@ namespace javierfoe.Blueberry.Hub
                 NetworkManager.singleton.offlineScene = null;
                 NetworkManager.singleton.StopHost();
                 Destroy(NetworkManager.singleton.gameObject);
-                NetworkManager.Shutdown();
+                NetworkManager.ResetStatics();
                 SceneManager.LoadScene(scene);
             }
         }

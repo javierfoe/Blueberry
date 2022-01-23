@@ -1,4 +1,5 @@
 ﻿using System;
+using kcp2k;
 using UnityEngine;
 using Mirror;
 
@@ -21,8 +22,6 @@ namespace javierfoe.Blueberry
         [HideInInspector]
         private NetworkManager _networkManager;
 
-        private IgnoranceTransport.Ignorance _transportLayer;
-
         [SerializeField]
         protected BlueberrySettings _bluetoothNetworkManagerSettings = new BlueberrySettings();
 
@@ -30,9 +29,9 @@ namespace javierfoe.Blueberry
         private BluetoothMultiplayerMode _desiredMode = BluetoothMultiplayerMode.None;
         private Action _clientAction;
         private Action _hostAction;
-        private BluetoothDevice device;
+        private BluetoothDevice _device;
 
-        public string ServerDevice => device != null ? device.Name : "";
+        public string ServerDevice => _device != null ? _device.Name : "";
         public bool IsBluetoothClientConnected { get; private set; }
 
         /// <summary>
@@ -43,10 +42,27 @@ namespace javierfoe.Blueberry
             get { return _isInitialized; }
         }
 
+        private ushort Port => GetPort();
+
+        private ushort GetPort()
+        {
+            Transport transport = GetComponent<Transport>();
+            
+            if (transport is KcpTransport)
+            {
+                return (transport as KcpTransport).Port;
+            }
+            if (transport is IgnoranceTransport.Ignorance)
+            {
+                return (ushort)(transport as IgnoranceTransport.Ignorance).port;
+            }
+
+            return default;
+        }
+
         protected virtual void OnEnable()
         {
             _networkManager = GetComponent<NetworkManager>();
-            _transportLayer = GetComponent<IgnoranceTransport.Ignorance>();
 
             // Setting the UUID. Must be unique for every application
             _isInitialized = Blueberry.Initialize(_bluetoothNetworkManagerSettings.Uuid);
@@ -150,14 +166,14 @@ namespace javierfoe.Blueberry
 
         protected virtual void OnBluetoothDevicePicked(BluetoothDevice device)
         {
-            this.device = device;
+            this._device = device;
             if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - DevicePicked: " + device);
             }
 
             // Trying to connect to the device picked by user
-            Blueberry.Connect(device.Address, (ushort)_transportLayer.port);
+            Blueberry.Connect(device.Address, Port);
         }
 
         //Called on the server when a client disconnects
@@ -182,7 +198,7 @@ namespace javierfoe.Blueberry
         protected virtual void OnBluetoothClientDisconnected(BluetoothDevice device)
         {
             IsBluetoothClientConnected = false;
-            this.device = null;
+            this._device = null;
             if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - DisconnectedFromServer: " + device);
@@ -197,7 +213,7 @@ namespace javierfoe.Blueberry
         protected virtual void OnBluetoothClientConnected(BluetoothDevice device)
         {
             IsBluetoothClientConnected = true;
-            this.device = device;
+            this._device = device;
             if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - ConnectedToServer: " + device);
@@ -215,7 +231,7 @@ namespace javierfoe.Blueberry
         protected virtual void OnBluetoothConnectionToServerFailed(BluetoothDevice device)
         {
             IsBluetoothClientConnected = false;
-            this.device = null;
+            this._device = null;
             if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - ConnectionToServerFailed: " + device);
@@ -256,7 +272,7 @@ namespace javierfoe.Blueberry
             {
                 case BluetoothMultiplayerMode.Server:
                     StopAll();
-                    Blueberry.StartServer((ushort)_transportLayer.port);
+                    Blueberry.StartServer(Port);
                     break;
                 case BluetoothMultiplayerMode.Client:
                     StopAll();
@@ -314,7 +330,7 @@ namespace javierfoe.Blueberry
             {
                 Blueberry.RequestEnableDiscoverability(_bluetoothNetworkManagerSettings.DefaultBluetoothDiscoverabilityInterval);
                 StopAll(); // Just to be sure
-                Blueberry.StartServer((ushort)_transportLayer.port);
+                Blueberry.StartServer(Port);
             }
             else
             {

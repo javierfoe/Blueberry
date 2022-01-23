@@ -1,16 +1,15 @@
 # Blueberry
 Asset that allows Multiplayer games to be played through Bluetooth and using Mirror between Android devices.
 
-First clone the repository, then download the following Mirror unity package, and unpack it in the project.
-Then download the code of the given commit, and copy the asset folder to the Unity Project folder manually.
+First clone the repository, download the unity packages from the following releases of Mirror and Ignorance, and unpack them.
 
 Mirror:
 
-https://github.com/vis2k/Mirror/releases/tag/v53.6.0
+https://github.com/vis2k/Mirror/releases/tag/v60.2.1
 
 Ignorance:
 
-https://github.com/SoftwareGuy/Ignorance
+https://github.com/SoftwareGuy/Ignorance/releases/tag/v1.4.0r1
 
 This project uses this abandoned asset on the Unity Asset Store
 
