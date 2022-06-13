@@ -5,11 +5,11 @@ First clone the repository, download the unity packages from the following relea
 
 Mirror:
 
-https://github.com/vis2k/Mirror/releases/tag/v60.2.1
+https://github.com/vis2k/Mirror/releases/tag/v67.1.0
 
 Ignorance:
 
-https://github.com/SoftwareGuy/Ignorance/releases/tag/v1.4.0r1
+https://github.com/SoftwareGuy/Ignorance/releases/tag/v1.4.0r2
 
 This project uses this abandoned asset on the Unity Asset Store
 
