@@ -26,5 +26,5 @@ The only change needed is to remove NetworkManagerHUD and KcpTransport component
 
 ### Chat Scene
 This requires KcpTransport to be removed and BlueberryNetworkManagerHelper and Ignorance transport to be added.
-HostButton and ClientButton must point to the BlueberryNetworkManagerHelper and call StartHost and StartClient respectively.
+HostButton and ClientButton must point to the BlueberryNetworkManagerHelper component and call StartHost and StartClient respectively.
 
