@@ -4,7 +4,7 @@ using Mirror;
 namespace javierfoe.Blueberry
 {
     [RequireComponent(typeof(BlueberryNetworkManagerHelper))]
-    public class BluetoothManagerHUD : MonoBehaviour
+    public class BlueberryHUD : MonoBehaviour
     {
         BlueberryNetworkManagerHelper manager;
 
