@@ -777,8 +777,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
+  cloudProjectId: ab2a3d96-436a-4049-8b83-c463f7214dd0
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
+  projectName: Blueberry
+  organizationId: javierfoe
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
