@@ -22,9 +22,9 @@ You can program your code as it were a standalone PC application, and once you a
 ## Examples
 
 ### Basic and Multiple Matches Scenes
-The only change needed is to remove NetworkManagerHUD and KcpTransport components from the NetworkManager gameObject and add BlueberryNetworkManagerHelper, BlueberryHUD and Ignorance transport.
+The only change needed is to remove `NetworkManagerHUD` and `KcpTransport` components from the `NetworkManager` gameObject and add `BlueberryNetworkManagerHelper`, `BlueberryHUD` and `Ignorance` transport.
 
 ### Chat Scene
-This requires KcpTransport to be removed and BlueberryNetworkManagerHelper and Ignorance transport to be added.
-HostButton and ClientButton must point to the BlueberryNetworkManagerHelper component and call StartHost and StartClient respectively.
+This requires `KcpTransport` to be removed and `BlueberryNetworkManagerHelper` and `Ignorance` transport to be added.
+`HostButton` and `ClientButton` must point to the `BlueberryNetworkManagerHelper` component and call `StartHost` and `StartClient` respectively.
 
