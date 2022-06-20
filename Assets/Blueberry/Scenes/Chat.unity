@@ -1761,19 +1761,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1783103027}
-        m_TargetAssemblyTypeName: javierfoe.Blueberry.BlueberryNetworkManagerHelper,
-          Assembly-CSharp
-        m_MethodName: StartClient
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &1063265581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2968,7 +2955,7 @@ GameObject:
   - component: {fileID: 1783103025}
   - component: {fileID: 1783103024}
   - component: {fileID: 1783103028}
-  - component: {fileID: 1783103027}
+  - component: {fileID: 1783103029}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -3037,24 +3024,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1783103027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783103022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58513bf1f311ab64aad3f5a1c7706861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _networkManager: {fileID: 0}
-  _bluetoothNetworkManagerSettings:
-    _uuid: 3a2daa25-6ef2-453d-8f58-1538d930e06e
-    _defaultBluetoothDiscoverabilityInterval: 120
-    _stopBluetoothServerOnListeningStopped: 1
-    _logBluetoothEvents: 0
 --- !u!114 &1783103028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3084,6 +3053,27 @@ MonoBehaviour:
   ServerConnEventBufferSize: 100
   PacketBufferCapacity: 4096
   MaxAllowedPacketSize: 33554432
+--- !u!114 &1783103029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783103022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16245e9ba16e4d07a9c90bfb638e36c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _networkManager: {fileID: 0}
+  _bluetoothNetworkManagerSettings:
+    _uuid: 44a35645-c3ff-4395-a9fa-9f9a937dc638
+    _defaultBluetoothDiscoverabilityInterval: 120
+    _stopBluetoothServerOnListeningStopped: 1
+    _logBluetoothEvents: 0
+  serverName: {fileID: 1027272349}
+  host: {fileID: 1904406266}
+  client: {fileID: 1063265580}
 --- !u!1 &1863915624
 GameObject:
   m_ObjectHideFlags: 0
@@ -3363,19 +3353,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1783103027}
-        m_TargetAssemblyTypeName: javierfoe.Blueberry.BlueberryNetworkManagerHelper,
-          Assembly-CSharp
-        m_MethodName: StartHost
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1904406267
 MonoBehaviour:

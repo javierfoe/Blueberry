@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace javierfoe.Blueberry.Hub
 {
-    public class AndroidDemo : MonoBehaviour
+    public class Hub : MonoBehaviour
     {
         [Serializable]
         public class ButtonScene

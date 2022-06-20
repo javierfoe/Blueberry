@@ -20,7 +20,7 @@ namespace javierfoe.Blueberry
 
         [SerializeField]
         [HideInInspector]
-        private NetworkManager _networkManager;
+        protected NetworkManager _networkManager;
 
         [SerializeField]
         protected BlueberrySettings _bluetoothNetworkManagerSettings = new BlueberrySettings();
@@ -30,6 +30,7 @@ namespace javierfoe.Blueberry
         private Action _clientAction;
         private Action _hostAction;
         private BluetoothDevice _device;
+        private IgnoranceTransport.Ignorance _transport;
 
         public string ServerDevice => _device != null ? _device.Name : "";
         public bool IsBluetoothClientConnected { get; private set; }
@@ -42,31 +43,31 @@ namespace javierfoe.Blueberry
             get { return _isInitialized; }
         }
 
-        private ushort Port => GetPort();
+        private ushort Port => (ushort)_transport.port;
 
-        private ushort GetPort()
+        protected virtual void Awake()
         {
-            Transport transport = GetComponent<Transport>();
-            
-            if (transport is KcpTransport)
+            _networkManager = GetComponent<NetworkManager>();
+            _transport = GetComponent<IgnoranceTransport.Ignorance>();
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+            // When BlueberryHUD is set replace it with NetworkManagerHUD
+            BlueberryHUD hud = gameObject.GetComponent<BlueberryHUD>();
+            if (hud != null)
             {
-                return (transport as KcpTransport).Port;
+                Destroy(hud);
+                gameObject.AddComponent<NetworkManagerHUD>();
             }
-            if (transport is IgnoranceTransport.Ignorance)
-            {
-                return (ushort)(transport as IgnoranceTransport.Ignorance).port;
-            }
-
-            return default;
+            // Destroy BlueberryNetworkManagerHelper
+            Destroy(this);
+#elif !UNITY_ANDROID
+            Debug.LogError("Not compatible target platform.");
+#endif
         }
 
         protected virtual void OnEnable()
         {
-            _networkManager = GetComponent<NetworkManager>();
-
             // Setting the UUID. Must be unique for every application
             _isInitialized = Blueberry.Initialize(_bluetoothNetworkManagerSettings.Uuid);
-
             // Registering the event listeners
             Blueberry.ListeningStarted += OnBluetoothListeningStarted;
             Blueberry.ListeningStopped += OnBluetoothListeningStopped;

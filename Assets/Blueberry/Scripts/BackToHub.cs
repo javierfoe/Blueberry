@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 namespace javierfoe.Blueberry.Hub
 {
-    public class BackToAndroidDemo : MonoBehaviour
+    public class BackToHub : MonoBehaviour
     {
-        private static BackToAndroidDemo instance;
+        private static BackToHub instance;
         private static string scene;
 
         // Start is called before the first frame update

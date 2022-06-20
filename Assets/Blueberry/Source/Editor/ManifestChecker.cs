@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
 
-namespace javierfoe.AndroidBluetoothMultiplayer.Editor
+namespace javierfoe.Blueberry.Editor
 {
     [InitializeOnLoad]
     internal class ManifestChecker

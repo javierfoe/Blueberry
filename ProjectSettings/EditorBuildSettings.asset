@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Blueberry/Scenes/DemoHub.unity
+    path: Assets/Blueberry/Scenes/Hub.unity
     guid: 005d3d51074238945b0f894bd1b2886e
   - enabled: 1
     path: Assets/Blueberry/Scenes/Basic.unity

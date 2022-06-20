@@ -114,17 +114,17 @@ namespace javierfoe.Blueberry {
             /// <summary>
             /// No bond is established between the Bluetooth devices.
             /// </summary>
-            None = 10,
+            None = 0,
 
             /// <summary>
             /// Bluetooth devices are currently establishing a bond.
             /// </summary>
-            Bonding = 11,
+            Bonding = 1,
 
             /// <summary>
             /// Bluetooth devices have an established bond.
             /// </summary>
-            Bonded = 12
+            Bonded = 2
         }
     }
 }

@@ -2,9 +2,8 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace javierfoe.AndroidBluetoothMultiplayer.Editor {
+namespace javierfoe.Blueberry.Editor {
     internal class UuidGenerator : EditorWindow {
-#if UNITY_ANDROID
         private string _uuid = "";
 
         private void OnEnable() {
@@ -23,6 +22,5 @@ namespace javierfoe.AndroidBluetoothMultiplayer.Editor {
                 Repaint();
             }
         }
-#endif
     }
 }

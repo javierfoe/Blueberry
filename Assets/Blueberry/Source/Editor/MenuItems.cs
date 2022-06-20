@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace javierfoe.AndroidBluetoothMultiplayer.Editor {
+namespace javierfoe.Blueberry.Editor {
     internal class MenuItems : EditorWindow {
         private const string kMenuRoot = "Blueberry/";
 
