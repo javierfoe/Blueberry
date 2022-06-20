@@ -3,17 +3,17 @@ using Mirror;
 
 namespace javierfoe.Blueberry
 {
-    [RequireComponent(typeof(BlueberryNetworkManagerHelper))]
+    [RequireComponent(typeof(BlueberryHelper))]
     public class BlueberryHUD : MonoBehaviour
     {
         public int offsetX;
         public int offsetY;
         
-        private BlueberryNetworkManagerHelper _manager;
+        private BlueberryHelper _manager;
 
         void Awake()
         {
-            _manager = GetComponent<BlueberryNetworkManagerHelper>();
+            _manager = GetComponent<BlueberryHelper>();
         }
 
         void Start()

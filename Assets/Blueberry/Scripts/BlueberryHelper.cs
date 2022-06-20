@@ -15,7 +15,7 @@ namespace javierfoe.Blueberry
     /// instead of using NetworkManager directly to start your client/server/host.
     /// </example>
     [RequireComponent(typeof(NetworkManager))]
-    public class BlueberryNetworkManagerHelper : MonoBehaviour
+    public class BlueberryHelper : MonoBehaviour
     {
 
         [SerializeField]

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace javierfoe.Blueberry
 {
-    public class BlueberryNetworkManagerHelperChat : BlueberryNetworkManagerHelper
+    public class BlueberryHelperChat : BlueberryHelper
     {
         [SerializeField] private InputField serverName;
         [SerializeField] private Button host, client;
