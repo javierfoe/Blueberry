@@ -21,9 +21,8 @@ namespace javierfoe.Blueberry
         protected NetworkManager networkManager;
 
         [SerializeField]
-        protected BlueberrySettings blueberrySettings = new BlueberrySettings();
+        protected BlueberrySettings blueberrySettings = new();
 
-        private bool _isInitialized;
         private BluetoothMultiplayerMode _desiredMode = BluetoothMultiplayerMode.None;
         private Action _clientAction;
         private Action _hostAction;
@@ -36,10 +35,7 @@ namespace javierfoe.Blueberry
         /// <summary>
         /// Gets a value indicating whether the plugin has initialized successfully.
         /// </summary>
-        public bool IsInitialized
-        {
-            get { return _isInitialized; }
-        }
+        public bool IsInitialized { get; private set; }
 
         private ushort Port => (ushort)_transport.port;
 
@@ -64,7 +60,7 @@ namespace javierfoe.Blueberry
         {
 #if UNITY_ANDROID
             // Setting the UUID. Must be unique for every application
-            _isInitialized = Blueberry.Initialize(_bluetoothNetworkManagerSettings.Uuid);
+            IsInitialized = Blueberry.Initialize(blueberrySettings.Uuid);
             // Registering the event listeners
             Blueberry.ListeningStarted += OnBluetoothListeningStarted;
             Blueberry.ListeningStopped += OnBluetoothListeningStopped;

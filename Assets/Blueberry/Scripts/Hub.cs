@@ -17,15 +17,14 @@ namespace javierfoe.Blueberry.Hub
         }
         
         [SerializeField]
-        private ButtonScene[] buttonScenes = null;
+        private ButtonScene[] buttonScenes;
 
         private void Awake()
         {
-            Button button;
-            for (int i = 0; i < buttonScenes.Length; i++)
+            foreach (var buttonScene in buttonScenes)
             {
-                string scene = buttonScenes[i].scene;
-                button = buttonScenes[i].button;
+                var scene = buttonScene.scene;
+                var button = buttonScene.button;
                 button.onClick.AddListener(() => LoadScene(scene));
             }
         }

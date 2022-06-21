@@ -92,16 +92,15 @@ namespace javierfoe.Blueberry
         {
             if (NetworkServer.active)
             {
-                //HOST
-                if (NetworkClient.active)
-                    GUILayout.Label($"<b>Host</b>: running via {Transport.activeTransport}");
-                //SERVER
-                else
-                    GUILayout.Label($"<b>Server</b>: running via {Transport.activeTransport}");
+                GUILayout.Label(NetworkClient.active
+                    // HOST
+                    ? $"<b>Host</b>: running via {Transport.activeTransport}"
+                    // SERVER
+                    : $"<b>Server</b>: running via {Transport.activeTransport}");
 
                 StopButton(true);
             }
-            //CLIENT
+            // CLIENT
             else if (Blueberry.GetCurrentMode() == BluetoothMultiplayerMode.Client)
             {
                 bool bluetoothClient = _manager.IsBluetoothClientConnected;

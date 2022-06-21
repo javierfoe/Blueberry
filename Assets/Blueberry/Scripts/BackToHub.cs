@@ -6,21 +6,21 @@ namespace javierfoe.Blueberry.Hub
 {
     public class BackToHub : MonoBehaviour
     {
-        private static BackToHub instance;
-        private static string scene;
+        private static BackToHub _instance;
+        private static string _scene;
 
         // Start is called before the first frame update
         void Start()
         {
-            if (instance != null && instance != this)
+            if (_instance != null && _instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
 
             DontDestroyOnLoad(gameObject);
-            scene = SceneManager.GetActiveScene().name;
-            instance = this;
+            _scene = SceneManager.GetActiveScene().name;
+            _instance = this;
         }
 
         // Update is called once per frame
@@ -32,7 +32,7 @@ namespace javierfoe.Blueberry.Hub
                 NetworkManager.singleton.StopHost();
                 Destroy(NetworkManager.singleton.gameObject);
                 NetworkManager.ResetStatics();
-                SceneManager.LoadScene(scene);
+                SceneManager.LoadScene(_scene);
             }
         }
     }

@@ -11,21 +11,21 @@ namespace javierfoe.Blueberry
                  "If you have multiple scenes with different NetworkManager's in your project, " +
                  "make sure the UUID is identical everywhere, otherwise Bluetooth connections will fail.")]
         [SerializeField]
-        protected string _uuid = "";
+        protected string uuid = "";
 
         [Tooltip("Bluetooth discoverability interval. Server is made discoverable over Bluetooth, so clients would " +
                  "have the ability to locate the server. On Android 4.0 and higher, value of 0 allows making device discoverable " +
                  "\"forever\" (until discoverability is disabled manually or Bluetooth is disabled).")]
         [SerializeField]
-        protected int _defaultBluetoothDiscoverabilityInterval = 120;
+        protected int defaultBluetoothDiscoverabilityInterval = 120;
 
         [Tooltip("Indicates whether to stop the Bluetooth server when listening " +
                  "for incoming Bluetooth connections has stopped.")]
         [SerializeField]
-        protected bool _stopBluetoothServerOnListeningStopped = true;
+        protected bool stopBluetoothServerOnListeningStopped = true;
 
         [Tooltip("Indicates whether Android Bluetooth Multiplayer events should be logged.")] [SerializeField]
-        protected bool _logBluetoothEvents;
+        protected bool logBluetoothEvents;
 
         /// <summary>
         /// Gets or sets the Bluetooth service UUID.
@@ -36,13 +36,13 @@ namespace javierfoe.Blueberry
         /// <exception cref="ArgumentException">UUID can't be empty.</exception>
         public string Uuid
         {
-            get { return _uuid; }
+            get => uuid;
             set
             {
                 if (String.IsNullOrEmpty(value))
-                    throw new ArgumentException("UUID can't be empty", "value");
+                    throw new ArgumentException("UUID can't be empty", nameof(value));
 
-                _uuid = value;
+                uuid = value;
             }
         }
 
@@ -52,13 +52,13 @@ namespace javierfoe.Blueberry
         /// <exception cref="ArgumentException">Discoverability interval can't be less than 0.</exception>
         public int DefaultBluetoothDiscoverabilityInterval
         {
-            get { return _defaultBluetoothDiscoverabilityInterval; }
+            get => defaultBluetoothDiscoverabilityInterval;
             set
             {
                 if (value < 0)
-                    throw new ArgumentException("Discoverability interval can't be < 0", "value");
+                    throw new ArgumentException("Discoverability interval can't be < 0", nameof(value));
 
-                _defaultBluetoothDiscoverabilityInterval = value;
+                defaultBluetoothDiscoverabilityInterval = value;
             }
         }
 
@@ -68,17 +68,16 @@ namespace javierfoe.Blueberry
         /// </summary>
         public bool StopBluetoothServerOnListeningStopped
         {
-            get { return _stopBluetoothServerOnListeningStopped; }
-            set { _stopBluetoothServerOnListeningStopped = value; }
+            get => stopBluetoothServerOnListeningStopped;
+            set => stopBluetoothServerOnListeningStopped = value;
         }
 
         /// <summary>
         /// Gets or sets a value indicating whether Android Bluetooth Multiplayer events should be logged.
         /// </summary>
-        public bool LogBluetoothEvents
-        {
-            get { return _logBluetoothEvents; }
-            set { _logBluetoothEvents = value; }
+        public bool LogBluetoothEvents {
+            get => logBluetoothEvents;
+            set => logBluetoothEvents = value;
         }
     }
 }
