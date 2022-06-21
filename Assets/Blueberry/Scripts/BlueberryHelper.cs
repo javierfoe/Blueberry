@@ -1,5 +1,4 @@
 ﻿using System;
-using kcp2k;
 using UnityEngine;
 using Mirror;
 
@@ -17,13 +16,12 @@ namespace javierfoe.Blueberry
     [RequireComponent(typeof(NetworkManager))]
     public class BlueberryHelper : MonoBehaviour
     {
-
         [SerializeField]
         [HideInInspector]
-        protected NetworkManager _networkManager;
+        protected NetworkManager networkManager;
 
         [SerializeField]
-        protected BlueberrySettings _bluetoothNetworkManagerSettings = new BlueberrySettings();
+        protected BlueberrySettings blueberrySettings = new BlueberrySettings();
 
         private bool _isInitialized;
         private BluetoothMultiplayerMode _desiredMode = BluetoothMultiplayerMode.None;
@@ -47,7 +45,7 @@ namespace javierfoe.Blueberry
 
         protected virtual void Awake()
         {
-            _networkManager = GetComponent<NetworkManager>();
+            networkManager = GetComponent<NetworkManager>();
             _transport = GetComponent<IgnoranceTransport.Ignorance>();
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
             // When BlueberryHUD is set replace it with NetworkManagerHUD
@@ -57,8 +55,6 @@ namespace javierfoe.Blueberry
                 Destroy(hud);
                 gameObject.AddComponent<NetworkManagerHUD>();
             }
-            // Destroy BlueberryNetworkManagerHelper
-            Destroy(this);
 #elif !UNITY_ANDROID
             Debug.LogError("Not compatible target platform.");
 #endif
@@ -66,6 +62,7 @@ namespace javierfoe.Blueberry
 
         protected virtual void OnEnable()
         {
+#if UNITY_ANDROID
             // Setting the UUID. Must be unique for every application
             _isInitialized = Blueberry.Initialize(_bluetoothNetworkManagerSettings.Uuid);
             // Registering the event listeners
@@ -82,6 +79,7 @@ namespace javierfoe.Blueberry
             Blueberry.ClientConnected += OnBluetoothServerConnected;
             Blueberry.ClientDisconnected += OnBluetoothServerDisconnected;
             Blueberry.DevicePicked += OnBluetoothDevicePicked;
+#endif
         }
 
         protected virtual void OnDisable()
@@ -90,7 +88,6 @@ namespace javierfoe.Blueberry
 #if UNITY_ANDROID
             // Stopping all Bluetooth connectivity on Unity networking disconnect event
             Blueberry.Stop();
-#endif
             // Unregistering the event listeners
             Blueberry.ListeningStarted -= OnBluetoothListeningStarted;
             Blueberry.ListeningStopped -= OnBluetoothListeningStopped;
@@ -105,32 +102,48 @@ namespace javierfoe.Blueberry
             Blueberry.ClientConnected -= OnBluetoothServerConnected;
             Blueberry.ClientDisconnected -= OnBluetoothServerDisconnected;
             Blueberry.DevicePicked -= OnBluetoothDevicePicked;
+#endif
         }
         #region NetworkManager methods
 
+        // Call StartClient, StartServer and StartHost directly when on Editor or Windows Standalone 
         /// <seealso cref="NetworkManager.StartClient()"/>
         public void StartClient()
         {
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+            networkManager.StartClient();
+#elif UNITY_ANDROID
             StartBluetoothClient(_networkManager.StartClient);
+#endif
         }
 
         /// <seealso cref="NetworkManager.StartServer()"/>
         public void StartServer()
         {
-            StartBluetoothHost(_networkManager.StartServer);
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+            networkManager.StartServer();
+#elif UNITY_ANDROID
+            StartBluetoothClient(_networkManager.StartServer);
+#endif
         }
 
         /// <seealso cref="NetworkManager.StartHost()"/>
         public void StartHost()
         {
-            StartBluetoothHost(_networkManager.StartHost);
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+            networkManager.StartHost();
+#elif UNITY_ANDROID
+            StartBluetoothClient(_networkManager.StartHost);
+#endif
         }
 
         public void StopHost()
         {
-            _networkManager.StopHost();
+            networkManager.StopHost();
+#if UNITY_ANDROID
             Blueberry.StopDiscovery();
             Blueberry.Stop();
+#endif
         }
 
         #endregion
@@ -139,7 +152,7 @@ namespace javierfoe.Blueberry
 
         protected virtual void OnBluetoothListeningStarted()
         {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            if (blueberrySettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - ListeningStarted");
             }
@@ -154,12 +167,12 @@ namespace javierfoe.Blueberry
 
         protected virtual void OnBluetoothListeningStopped()
         {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            if (blueberrySettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - ListeningStopped");
             }
 
-            if (_bluetoothNetworkManagerSettings.StopBluetoothServerOnListeningStopped)
+            if (blueberrySettings.StopBluetoothServerOnListeningStopped)
             {
                 Blueberry.Stop();
             }
@@ -168,7 +181,7 @@ namespace javierfoe.Blueberry
         protected virtual void OnBluetoothDevicePicked(BluetoothDevice device)
         {
             this._device = device;
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            if (blueberrySettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - DevicePicked: " + device);
             }
@@ -180,7 +193,7 @@ namespace javierfoe.Blueberry
         //Called on the server when a client disconnects
         protected virtual void OnBluetoothServerDisconnected(BluetoothDevice device)
         {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            if (blueberrySettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - ClientDisconnected: " + device);
             }
@@ -189,7 +202,7 @@ namespace javierfoe.Blueberry
         //Called on the server when a client is connected
         protected virtual void OnBluetoothServerConnected(BluetoothDevice device)
         {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            if (blueberrySettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - ClientConnected: " + device);
             }
@@ -200,7 +213,7 @@ namespace javierfoe.Blueberry
         {
             IsBluetoothClientConnected = false;
             this._device = null;
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            if (blueberrySettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - DisconnectedFromServer: " + device);
             }
@@ -215,7 +228,7 @@ namespace javierfoe.Blueberry
         {
             IsBluetoothClientConnected = true;
             this._device = device;
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            if (blueberrySettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - ConnectedToServer: " + device);
             }
@@ -233,7 +246,7 @@ namespace javierfoe.Blueberry
         {
             IsBluetoothClientConnected = false;
             this._device = null;
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            if (blueberrySettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - ConnectionToServerFailed: " + device);
             }
@@ -241,7 +254,7 @@ namespace javierfoe.Blueberry
 
         protected virtual void OnBluetoothAdapterDisabled()
         {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            if (blueberrySettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - AdapterDisabled");
             }
@@ -255,7 +268,7 @@ namespace javierfoe.Blueberry
 
         protected virtual void OnBluetoothAdapterEnableFailed()
         {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            if (blueberrySettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - AdapterEnableFailed");
             }
@@ -263,7 +276,7 @@ namespace javierfoe.Blueberry
 
         protected virtual void OnBluetoothAdapterEnabled()
         {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            if (blueberrySettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - AdapterEnabled");
             }
@@ -287,7 +300,7 @@ namespace javierfoe.Blueberry
 
         protected virtual void OnBluetoothDiscoverabilityEnableFailed()
         {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            if (blueberrySettings.LogBluetoothEvents)
             {
                 Debug.Log("Bluetooth Event - DiscoverabilityEnableFailed");
             }
@@ -295,9 +308,9 @@ namespace javierfoe.Blueberry
 
         protected virtual void OnBluetoothDiscoverabilityEnabled(int discoverabilityDuration)
         {
-            if (_bluetoothNetworkManagerSettings.LogBluetoothEvents)
+            if (blueberrySettings.LogBluetoothEvents)
             {
-                Debug.Log(string.Format("Event - DiscoverabilityEnabled: {0} seconds", discoverabilityDuration));
+                Debug.Log($"Event - DiscoverabilityEnabled: {discoverabilityDuration} seconds");
             }
         }
 
@@ -329,7 +342,7 @@ namespace javierfoe.Blueberry
             // If Bluetooth is enabled, immediately start the Bluetooth server
             if (Blueberry.GetIsBluetoothEnabled())
             {
-                Blueberry.RequestEnableDiscoverability(_bluetoothNetworkManagerSettings.DefaultBluetoothDiscoverabilityInterval);
+                Blueberry.RequestEnableDiscoverability(blueberrySettings.DefaultBluetoothDiscoverabilityInterval);
                 StopAll(); // Just to be sure
                 Blueberry.StartServer(Port);
             }
@@ -337,13 +350,13 @@ namespace javierfoe.Blueberry
             {
                 // Otherwise, we have to enable Bluetooth first and wait for callback
                 _desiredMode = BluetoothMultiplayerMode.Server;
-                Blueberry.RequestEnableDiscoverability(_bluetoothNetworkManagerSettings.DefaultBluetoothDiscoverabilityInterval);
+                Blueberry.RequestEnableDiscoverability(blueberrySettings.DefaultBluetoothDiscoverabilityInterval);
             }
         }
 
         private void StopAll()
         {
-            _networkManager.StopHost();
+            networkManager.StopHost();
             Blueberry.Stop();
         }
 
@@ -362,9 +375,9 @@ namespace javierfoe.Blueberry
 
         protected virtual void OnValidate()
         {
-            if (String.IsNullOrEmpty(_bluetoothNetworkManagerSettings.Uuid))
+            if (String.IsNullOrEmpty(blueberrySettings.Uuid))
             {
-                _bluetoothNetworkManagerSettings.Uuid = Guid.NewGuid().ToString();
+                blueberrySettings.Uuid = Guid.NewGuid().ToString();
             }
         }
 #endif
