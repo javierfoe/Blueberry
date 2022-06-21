@@ -109,7 +109,7 @@ namespace javierfoe.Blueberry
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
             networkManager.StartClient();
 #elif UNITY_ANDROID
-            StartBluetoothClient(_networkManager.StartClient);
+            StartBluetoothClient(networkManager.StartClient);
 #endif
         }
 
@@ -119,7 +119,7 @@ namespace javierfoe.Blueberry
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
             networkManager.StartServer();
 #elif UNITY_ANDROID
-            StartBluetoothClient(_networkManager.StartServer);
+            StartBluetoothHost(networkManager.StartServer);
 #endif
         }
 
@@ -129,7 +129,7 @@ namespace javierfoe.Blueberry
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
             networkManager.StartHost();
 #elif UNITY_ANDROID
-            StartBluetoothClient(_networkManager.StartHost);
+            StartBluetoothHost(networkManager.StartHost);
 #endif
         }
 
