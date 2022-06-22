@@ -1,7 +1,7 @@
 using UnityEngine;
 using Mirror;
 
-namespace javierfoe.Blueberry
+namespace Blueberry
 {
     [RequireComponent(typeof(BlueberryHelper))]
     public class BlueberryHUD : MonoBehaviour

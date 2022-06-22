@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace javierfoe.Blueberry.Editor {
+namespace Blueberry.Editor {
     internal class UuidGenerator : EditorWindow {
         private string _uuid = "";
 

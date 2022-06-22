@@ -2,7 +2,7 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace javierfoe.Blueberry.Hub
+namespace Blueberry.Hub
 {
     public class BackToHub : MonoBehaviour
     {

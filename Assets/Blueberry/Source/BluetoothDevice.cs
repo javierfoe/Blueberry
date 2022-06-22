@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using javierfoe.Blueberry.Internal;
+using Blueberry.Internal;
 
-namespace javierfoe.Blueberry {
+namespace Blueberry {
     /// <summary>
     /// Represents a Bluetooth device.
     /// </summary>

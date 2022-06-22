@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
 
-namespace javierfoe.Blueberry.Editor
+namespace Blueberry.Editor
 {
     [InitializeOnLoad]
     internal class ManifestChecker

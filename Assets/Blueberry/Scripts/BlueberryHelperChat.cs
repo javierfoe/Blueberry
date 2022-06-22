@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace javierfoe.Blueberry
+namespace Blueberry
 {
     public class BlueberryHelperChat : BlueberryHelper
     {

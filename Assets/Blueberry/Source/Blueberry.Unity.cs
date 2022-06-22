@@ -1,7 +1,7 @@
 using UnityEngine;
-using javierfoe.Blueberry.Internal;
+using Blueberry.Internal;
 
-namespace javierfoe.Blueberry
+namespace Blueberry
 {
     /// <summary>
     /// A core class that wraps Java methods of Android plugin.

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace javierfoe.Blueberry
+namespace Blueberry
 {
 
     [Serializable]

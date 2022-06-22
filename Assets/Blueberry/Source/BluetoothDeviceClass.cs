@@ -1,4 +1,4 @@
-﻿namespace javierfoe.Blueberry {
+﻿namespace Blueberry {
     /// <summary>
     /// A helper class that simplifies working with Bluetooth device classes.
     /// </summary>

@@ -2,7 +2,7 @@
 using UnityEngine;
 using Mirror;
 
-namespace javierfoe.Blueberry
+namespace Blueberry
 {
     /// <summary>
     /// A helper class that works in conjunction with <see cref="NetworkManager"/>.

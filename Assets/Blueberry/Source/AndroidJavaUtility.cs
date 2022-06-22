@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace javierfoe.Blueberry.Internal {
+namespace Blueberry.Internal {
     /// <summary>
     /// A collection of helpful extension methods.
     /// </summary>

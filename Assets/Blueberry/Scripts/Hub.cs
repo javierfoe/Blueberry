@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace javierfoe.Blueberry.Hub
+namespace Blueberry.Hub
 {
     public class Hub : MonoBehaviour
     {
         [Serializable]
-        public class ButtonScene
+        private class ButtonScene
         {
             public Button button;
             [Scene]

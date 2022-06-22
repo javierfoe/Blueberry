@@ -8,7 +8,7 @@ using System.Xml.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace javierfoe.Blueberry.Editor {
+namespace Blueberry.Editor {
     internal static class ManifestGenerator {
         private const string kCoarseLocationPermission = "android.permission.ACCESS_COARSE_LOCATION";
         private const string kFineLocationPermission = "android.permission.ACCESS_FINE_LOCATION";

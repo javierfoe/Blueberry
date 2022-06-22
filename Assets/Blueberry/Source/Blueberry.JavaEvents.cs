@@ -1,6 +1,6 @@
 using System;
 
-namespace javierfoe.Blueberry {
+namespace Blueberry {
     public sealed partial class Blueberry {
         #region Events
 

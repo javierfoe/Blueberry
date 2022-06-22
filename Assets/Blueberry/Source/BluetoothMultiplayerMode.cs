@@ -1,4 +1,4 @@
-namespace javierfoe.Blueberry {
+namespace Blueberry {
     /// <summary>
     /// Represents the state in which the plugin operates.
     /// </summary>
