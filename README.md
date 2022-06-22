@@ -17,7 +17,10 @@ Android Bluetooth Multiplayer:
 https://assetstore.unity.com/packages/tools/network/android-bluetooth-multiplayer-basic-20928
 
 ## How to use
-The most basic setup is to replace `KcpTransport` for `IgnoranceTransport.Ignorance`, `NetworkManagerHUD` for `BlueberryHUD` and add `BlueberryHelper` component on `NetworkManager` gameObject.
+The most basic setup is to:
+- Replace `KcpTransport` for `IgnoranceTransport.Ignorance`.
+- Replace `NetworkManagerHUD` for `BlueberryHUD`.
+- Add `BlueberryHelper` component on `NetworkManager` gameObject.
 
 In case `HUD` components are not used, `BlueberryHelper` methods `StartHost`,`StartClient` and `StartServer` need to be called instead of those from `NetworkManager` as done in the `Chat` scene.
 
