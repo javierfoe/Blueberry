@@ -16,6 +16,13 @@ This project uses this abandoned asset on the Unity Asset Store
 Android Bluetooth Multiplayer:
 https://assetstore.unity.com/packages/tools/network/android-bluetooth-multiplayer-basic-20928
 
+## Requirements
+
+Android devices with at least Bluetooth 4.0. It has been tested on both Bluetooth 4.0 and 5.0
+
+Ignorance transport works for both these versions.
+KcpTransport only works for Bluetooth 5.0.
+
 ## How to use
 The most basic setup is to:
 - Replace `KcpTransport` for `IgnoranceTransport.Ignorance`.
