@@ -17,14 +17,8 @@ Android Bluetooth Multiplayer:
 https://assetstore.unity.com/packages/tools/network/android-bluetooth-multiplayer-basic-20928
 
 ## How to use
-You can program your code as it were a standalone PC application, and once you are finished you just need to change a few things to make it Bluetooth compatible. In the next section you can see how it has been done for 3 different Mirror example scenes.
+The most basic setup is to replace `KcpTransport` for `IgnoranceTransport.Ignorance`, `NetworkManagerHUD` for `BlueberryHUD` and add `BlueberryHelper` component on `NetworkManager` gameObject.
 
-## Examples
+In case `HUD` components are not used, `BlueberryHelper` methods `StartHost`,`StartClient` and `StartServer` need to be called instead of those from `NetworkManager` as done in the `Chat` scene.
 
-### Basic and Multiple Matches Scenes
-The only change needed is to remove `NetworkManagerHUD` and `KcpTransport` components from the `NetworkManager` gameObject and add `BlueberryNetworkManagerHelper`, `BlueberryHUD` and `Ignorance` transport.
-
-### Chat Scene
-This requires `KcpTransport` to be removed and `BlueberryNetworkManagerHelper` and `Ignorance` transport to be added.
-`HostButton` and `ClientButton` must point to the `BlueberryNetworkManagerHelper` component and call `StartHost` and `StartClient` respectively.
-
+With this setup you can make builds for both `Windows Standalone` and `Android` devices without changing the code. Depending on the target platform `BlueberryHelper` will trigger the `Bluetooth` functionality or just behave as a standard `NetworkManager`. This will hopefully ease the development time.
