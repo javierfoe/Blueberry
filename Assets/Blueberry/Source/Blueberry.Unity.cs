@@ -16,7 +16,7 @@ namespace Blueberry
         /// <summary>
         /// The name of the GameObject, used for receiving messages from Java side.
         /// </summary>
-        private static readonly string kGameObjectName = "_AndroidBluetoothMultiplayer";
+        private static readonly string kGameObjectName = "_Blueberry";
 
         /// <summary>
         /// A reference to the Java BluetoothMediator object .
@@ -52,7 +52,7 @@ namespace Blueberry
                     }
                 }
             } catch {
-                Debug.LogError("Blueberry initialization failed. Probably .aar not present?");
+                Debug.LogError("Blueberry initialization failed.");
                 throw;
             }
 #endif

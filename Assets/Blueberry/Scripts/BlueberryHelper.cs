@@ -58,7 +58,6 @@ namespace Blueberry
 
         protected virtual void OnEnable()
         {
-#if UNITY_ANDROID
             // Setting the UUID. Must be unique for every application
             IsInitialized = Blueberry.Initialize(blueberrySettings.Uuid);
             // Registering the event listeners
@@ -75,13 +74,10 @@ namespace Blueberry
             Blueberry.ClientConnected += OnBluetoothServerConnected;
             Blueberry.ClientDisconnected += OnBluetoothServerDisconnected;
             Blueberry.DevicePicked += OnBluetoothDevicePicked;
-#endif
         }
 
         protected virtual void OnDisable()
         {
-
-#if UNITY_ANDROID
             // Stopping all Bluetooth connectivity on Unity networking disconnect event
             Blueberry.Stop();
             // Unregistering the event listeners
@@ -98,7 +94,6 @@ namespace Blueberry
             Blueberry.ClientConnected -= OnBluetoothServerConnected;
             Blueberry.ClientDisconnected -= OnBluetoothServerDisconnected;
             Blueberry.DevicePicked -= OnBluetoothDevicePicked;
-#endif
         }
         #region NetworkManager methods
 
@@ -136,10 +131,8 @@ namespace Blueberry
         public void StopHost()
         {
             networkManager.StopHost();
-#if UNITY_ANDROID
             Blueberry.StopDiscovery();
             Blueberry.Stop();
-#endif
         }
 
         #endregion
