@@ -5,19 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Blueberry/Scenes/Hub.unity
     guid: 005d3d51074238945b0f894bd1b2886e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Blueberry/Scenes/Basic.unity
     guid: 202307f097388424f8821575155ecbf4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Blueberry/Scenes/Chat.unity
     guid: 3940871f42ce210488df2b8ae7544f25
-  - enabled: 0
+  - enabled: 1
     path: Assets/Blueberry/Scenes/MultipleMatches.unity
     guid: 2868f35fd367a8f4fb344caf62fef96e
-  - enabled: 1
-    path: Assets/Mirror/Examples/Chat/Scenes/Main.unity
-    guid: f4e8d4de4484e44bba666f2d1f66c73e
   m_configObjects: {}
