@@ -16,7 +16,7 @@ namespace Blueberry
         /// <summary>
         /// The name of the GameObject, used for receiving messages from Java side.
         /// </summary>
-        private static readonly string kGameObjectName = "_Blueberry";
+        private static readonly string kGameObjectName = "_AndroidBluetoothMultiplayer";
 
         /// <summary>
         /// A reference to the Java BluetoothMediator object .
