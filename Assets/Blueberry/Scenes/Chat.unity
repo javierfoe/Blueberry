@@ -1208,8 +1208,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 262.77008, y: -5}
-  m_SizeDelta: {x: 515.54016, y: 21.120667}
+  m_AnchoredPosition: {x: 228.59042, y: -5}
+  m_SizeDelta: {x: 447.18085, y: 21.221067}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &827598817
 MonoBehaviour:
@@ -1289,9 +1289,9 @@ RectTransform:
   m_Father: {fileID: 1499096249}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 381, y: -175}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 81, y: -175}
   m_SizeDelta: {x: 250, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &851154181
@@ -1605,9 +1605,9 @@ RectTransform:
   m_Father: {fileID: 1499096249}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 381, y: -126}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 81, y: -126}
   m_SizeDelta: {x: 250, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1027272349
@@ -1763,10 +1763,10 @@ RectTransform:
   m_Father: {fileID: 1499096249}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 415, y: -254}
-  m_SizeDelta: {x: 220, y: 60}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 115, y: -254}
+  m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1063265580
 MonoBehaviour:
@@ -2284,7 +2284,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 1, y: 0}
-  m_SizeDelta: {x: -1, y: -949.7952}
+  m_SizeDelta: {x: -1, y: -955.0698}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1335915326
 MonoBehaviour:
@@ -2478,9 +2478,9 @@ RectTransform:
   m_Father: {fileID: 1499096249}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 172, y: -175}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -128, y: -175}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1481045374
@@ -2570,7 +2570,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 400}
+  m_SizeDelta: {x: 470, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1499096250
 MonoBehaviour:
@@ -3079,10 +3079,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkManager: {fileID: 0}
   blueberrySettings:
-    _uuid: 2879d484-7c57-46c5-a406-59bfb0e2508d
-    _defaultBluetoothDiscoverabilityInterval: 120
-    _stopBluetoothServerOnListeningStopped: 1
-    _logBluetoothEvents: 0
+    uuid: 1d890cf6-3b25-4fd3-826f-73df1d730f7e
+    defaultBluetoothDiscoverabilityInterval: 120
+    stopBluetoothServerOnListeningStopped: 1
+    logBluetoothEvents: 0
   serverName: {fileID: 1027272349}
 --- !u!1 &1863915624
 GameObject:
@@ -3303,10 +3303,10 @@ RectTransform:
   m_Father: {fileID: 1499096249}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 185, y: -254}
-  m_SizeDelta: {x: 220, y: 60}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -115, y: -254}
+  m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1904406266
 MonoBehaviour:
@@ -3594,9 +3594,9 @@ RectTransform:
   m_Father: {fileID: 1499096249}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 172, y: -126}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -128, y: -126}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1995652017
